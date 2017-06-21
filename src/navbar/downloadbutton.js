@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
-import './App.css';
 
-  constructor(){
-  super()
-  }
-  
+
+
+
   class Download extends Component {
+    constructor(){
+    super()
+    }
     render() {
       return (
-
+        <div className="bestberesourcefull">
+          <p>test2</p>
+        </div>
       )
     }
   }

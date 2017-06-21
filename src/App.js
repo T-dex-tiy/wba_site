@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import TopNav from "./src/navbar/TopNav";
+import TopNav from "./navbar/TopNav.js";
 import './App.css';
 
 class App extends Component {

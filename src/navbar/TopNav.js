@@ -1,18 +1,23 @@
 import React, { Component } from 'react';
-import './App.css';
 import Download from '../navbar/downloadbutton.js';
 import Logout from '../navbar/logOut.js';
 
-constructor(){
-  super()
-}
 
-class LogOut extends Component {
+class TopNav extends Component {
+  constructor(){
+    super()
+  }
   render() {
     return (
+      <div className="bestberesourcefull">
+        <p>test</p>
+        <Logout />
+        <Download />
+
+      </div>
 
      )
   }
 }
 
-export default LogOut
+export default TopNav
