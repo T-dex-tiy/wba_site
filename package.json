@@ -10,6 +10,8 @@
     "redux": "^3.7.0"
   },
   "devDependencies": {
+    "firebase": "^4.1.3",
+    "re-base": "^3.0.2",
     "react-scripts": "1.0.7"
   },
   "scripts": {
