@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import firebase from 'firebase';
 import Rebase from 're-base';
 import TopNav from "./navbar/TopNav.js";
+import Footer from './main/footer.js';
 import './styles/App.css';
 
 
@@ -18,14 +19,15 @@ class App extends Component {
   constructor(props){
     super(props)
     this.state = {
-      data:{},
+      Location:{},
+      Date:{},
     }
   }
 
   componentDidMount(){
-    base.syncState(`data`, {
+    base.syncState(`Location`, {
       context: this,
-      state: 'data',
+      state: 'Location',
     });
   }
   componentWillUnmount(){
@@ -38,8 +40,13 @@ class App extends Component {
         <div className="App-header">
           <TopNav className="Directory"/>
         </div>
-        <p className="App-intro">
-        </p>
+        <div>
+          <p className="App-intro">
+          </p>
+        </div>
+        <div className="footer">
+          <Footer />
+        </div>
       </div>
     );
   }

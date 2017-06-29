@@ -1,14 +1,28 @@
 body{
-  font-family: Helvectia sans-serif;
+  font-family:"HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
 }
 
 .App-header{
   display: flex;
+  flex-direction: row-reverse;
   justify-content: space-between;
   align-items: center;
   height:5.5em;
   background-color: #ffcc00;
   width: 100%;
-  .Directory{}
+  .Directory{
+    display: flex;
+    justify-content: flex-end;
+  }
 
+}
+.footer{
+  background: #4f553c;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-start space-between;
+  height:155px;
+  width: 100%;
+  color:white;
+  align-content: stretch;
 }
