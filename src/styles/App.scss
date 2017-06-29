@@ -1,7 +1,7 @@
 body{
   font-family:"HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
 }
-
+//header
 .App-header{
   display: flex;
   flex-direction: row-reverse;
@@ -14,8 +14,36 @@ body{
     display: flex;
     justify-content: flex-end;
   }
-
 }
+//Main landing page
+
+.App-intro{
+  display:flex;
+  flex-direction: row;
+
+  .left-box{
+    border: solid black 1px;
+    padding:1px;
+    margin: 1px;
+    flex-direction:row;
+    justify-content: flex-start;
+    align-items: stretch;
+    min-height:750px;
+    height:100%;
+    width:50%;
+  }
+  .right-box{
+    border: solid black 1px;
+    padding:1px;
+    margin: 1px;
+    flex-direction:row;
+    align-items: stretch;
+    min-height:750px;
+    height:100%;
+    width:50%;
+  }
+}
+//footer
 .footer{
   background: #4f553c;
   display: flex;

@@ -13,6 +13,29 @@ body {
     display: flex;
     justify-content: flex-end; }
 
+.App-intro {
+  display: flex;
+  flex-direction: row; }
+  .App-intro .left-box {
+    border: solid black 1px;
+    padding: 1px;
+    margin: 1px;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: stretch;
+    min-height: 750px;
+    height: 100%;
+    width: 50%; }
+  .App-intro .right-box {
+    border: solid black 1px;
+    padding: 1px;
+    margin: 1px;
+    flex-direction: row;
+    align-items: stretch;
+    min-height: 750px;
+    height: 100%;
+    width: 50%; }
+
 .footer {
   background: #4f553c;
   display: flex;

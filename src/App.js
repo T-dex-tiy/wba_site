@@ -3,6 +3,8 @@ import firebase from 'firebase';
 import Rebase from 're-base';
 import TopNav from "./navbar/TopNav.js";
 import Footer from './main/footer.js';
+import Info from './main/Info.js';
+import Display from './main/display.js';
 import './styles/App.css';
 
 
@@ -42,6 +44,8 @@ class App extends Component {
         </div>
         <div>
           <p className="App-intro">
+            <Info/>
+            <Display/>
           </p>
         </div>
         <div className="footer">

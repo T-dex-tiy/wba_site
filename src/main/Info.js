@@ -7,7 +7,7 @@ class Info extends Component {
   render() {
     return (
       <div className="left-box">
-        <p>test1</p>
+        <p>Data</p>
       </div>
      )
   }

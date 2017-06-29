@@ -7,7 +7,7 @@ class Display extends Component {
   render() {
     return (
       <div className="right-box">
-        <p>test1</p>
+        <p>Photo would be here</p>
       </div>
      )
   }
