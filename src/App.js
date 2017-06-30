@@ -21,15 +21,14 @@ class App extends Component {
   constructor(props){
     super(props)
     this.state = {
-      Location:{},
-      Date:{},
+      data:{},
     }
   }
 
   componentDidMount(){
-    base.syncState(`Location`, {
+    base.syncState(`data`, {
       context: this,
-      state: 'Location',
+      state: 'data',
     });
   }
   componentWillUnmount(){
@@ -44,7 +43,7 @@ class App extends Component {
         </div>
         <div>
           <p className="App-intro">
-            <Info/>
+            <Info displayLocation={this.state.data} displayDate={this.state.data}/>
             <Display/>
           </p>
         </div>

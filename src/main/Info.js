@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import LocationNav from './dataNav/locationNav.js';
 
 class Info extends Component {
   constructor(){
@@ -7,7 +8,15 @@ class Info extends Component {
   render() {
     return (
       <div className="left-box">
-        <p>Data</p>
+        <div className="loactionData">
+          <select id="dataSet">
+          {
+            Object.keys(this.props.displayLocation).map(key=>{
+              return <LocationNav key={key} index={key} locationInfo={this.props.displayLocation[key]}
+              />})
+            }
+          </select>
+        </div>
       </div>
      )
   }
