@@ -7,11 +7,9 @@ class LocationNav extends Component {
   render() {
     const {locationInfo}= this.props;
     return (
-      <div className="right-box">
         <option className="locationDropdown">
-        {locationInfo.date}
+        {locationInfo}
         </option>
-      </div>
      )
   }
 }

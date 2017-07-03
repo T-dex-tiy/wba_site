@@ -11,7 +11,9 @@ class Info extends Component {
         <div className="loactionData">
           <select id="dataSet">
           {
-            Object.keys(this.props.displayLocation).map(key=>{
+            Object
+            .keys(this.props.displayLocation)
+            .map(key=>{
               return <LocationNav key={key} index={key} locationInfo={this.props.displayLocation[key]}
               />})
             }
