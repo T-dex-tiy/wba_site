@@ -10,7 +10,6 @@ class TopNav extends Component {
   render() {
     return (
       <div className="bestberesourcefull">
-        <p>test</p>
         <Logout />
         <Download />
 

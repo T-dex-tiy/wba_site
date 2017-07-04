@@ -4,11 +4,12 @@ class LocationNav extends Component {
   constructor(){
     super()
   }
+
   render() {
-    const {locationInfo}= this.props;
+    const {locationInfo} = this.props;
     return (
         <option className="locationDropdown">
-        {locationInfo}
+        {locationInfo.location + ' '+ locationInfo.date}
         </option>
      )
   }

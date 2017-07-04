@@ -43,7 +43,7 @@ class App extends Component {
         </div>
         <div>
           <p className="App-intro">
-            <Info displayLocation={this.state.data} displayDate={this.state.data}/>
+            <Info displayLocation={this.state.data}/>
             <Display/>
           </p>
         </div>

@@ -7,7 +7,7 @@ class LogOut extends Component {
   render() {
     return (
       <div className="bestberesourcefull">
-        <p>test1</p>
+        <button onClick="">Log Out</button>
       </div>
      )
   }
