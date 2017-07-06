@@ -5,6 +5,7 @@ import TopNav from "./navbar/TopNav.js";
 import Footer from './main/footer.js';
 import Info from './main/Info.js';
 import Display from './main/display.js';
+import {EventEmitter} from 'events';
 import './styles/App.css';
 
 
@@ -35,6 +36,15 @@ class App extends Component {
   base.removeBinding(this.ref);
 }
 
+
+componentWillMount(){
+  this.eventEmitter = new EventEmitter()
+
+    this.eventEmitter.addListener("updatePhoto", ({data}) => {
+      this.userScreen({newDisplayPhoto: data})
+
+    });
+}
   render() {
     return (
       <div className="App">
@@ -43,8 +53,9 @@ class App extends Component {
         </div>
         <div>
           <p className="App-intro">
-            <Info displayLocation={this.state.data}/>
-            <Display/>
+            <Info displayLocation={this.state.data}
+              eventEmitter={this.eventEmitter}/>
+            <Display displayPics={this.state.data}/>
           </p>
         </div>
         <div className="footer">

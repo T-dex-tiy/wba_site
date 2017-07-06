@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import DisplayPic from './dataNav/displayPics.js';
 
 class Display extends Component {
   constructor(){
@@ -7,7 +8,17 @@ class Display extends Component {
   render() {
     return (
       <div className="right-box">
-        <p>Photo would be here</p>
+        <div className="Pic">
+          {
+            Object
+            .keys(this.props.displayPics)
+            .map(key=>{
+              return <DisplayPic key={key}
+                index={key}
+                datedPics={this.props.displayPics[key]}
+                />})
+          }
+        </div>
       </div>
      )
   }
