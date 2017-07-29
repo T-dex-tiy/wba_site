@@ -19,12 +19,17 @@ const app= firebase.initializeApp({
 
 const base = Rebase.createClass(app.database());
 
+const auth = new Auth();
+auth.login();
+
+
 
 class App extends Component {
   constructor(props){
     super(props)
     this.state = {
       data:{},
+
     }
   }
 
@@ -46,9 +51,6 @@ componentWillMount(){
       this.userScreen({newDisplayPhoto: data})
 
     });
-
-    const auth = new Auth();
-    auth.login();
 }
 
 
