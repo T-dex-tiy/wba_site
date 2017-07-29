@@ -6,6 +6,7 @@ import Footer from './main/footer.js';
 import Info from './main/Info.js';
 import Display from './main/display.js';
 import {EventEmitter} from 'events';
+import Auth from './Auth.js';
 import './styles/App.css';
 
 
@@ -17,6 +18,7 @@ const app= firebase.initializeApp({
 });
 
 const base = Rebase.createClass(app.database());
+
 
 class App extends Component {
   constructor(props){
@@ -44,7 +46,14 @@ componentWillMount(){
       this.userScreen({newDisplayPhoto: data})
 
     });
+
+    const auth = new Auth();
+    auth.login();
 }
+
+
+
+
   render() {
     return (
       <div className="App">
