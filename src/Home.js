@@ -54,9 +54,6 @@ componentWillMount(){
 
     return (
       <div className="App">
-        <div className="App-header">
-          <TopNav className="Directory"/>
-        </div>
         <div>
           <p className="App-intro">
             <Info displayLocation={this.state.data}

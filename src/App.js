@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Navbar, Button } from 'react-bootstrap';
+import Download from './navbar/downloadbutton.js';
 import './styles/App.css';
 
 class App extends Component {
@@ -20,18 +21,8 @@ class App extends Component {
 
     return (
       <div>
-        <Navbar fluid>
-          <Navbar.Header>
-            <Navbar.Brand>
-              <a href="#">Auth0 - React</a>
-            </Navbar.Brand>
-            <Button
-              bsStyle="primary"
-              className="btn-margin"
-              onClick={this.goTo.bind(this, 'home')}
-            >
-              Home
-            </Button>
+        <Navbar className="App-header">
+          <Navbar.Header className="Directory">
             {
               !isAuthenticated() && (
                   <Button
@@ -54,6 +45,7 @@ class App extends Component {
                   </Button>
                 )
             }
+            <Download />
           </Navbar.Header>
         </Navbar>
       </div>
