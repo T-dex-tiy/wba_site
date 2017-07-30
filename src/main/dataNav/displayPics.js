@@ -9,7 +9,9 @@ class DisplayPic extends Component {
     const {datedPics} = this.props;
     return (
         <div className="photo">
+          <div>
           <img className="renderedPics" src={datedPics.photo}/>
+          </div>
         </div>
      )
   }

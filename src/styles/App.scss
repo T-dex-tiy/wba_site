@@ -41,8 +41,22 @@ body{
     min-height:750px;
     height:100%;
     width:50%;
+
+    .photo{
+    display: flex;
+    flex-wrap: nowrap;
+    max-width: 100%;
+
+    .renderedPics{
+      display: flex;
+      flex-wrap: nowrap;
+      max-width: 100%;
+    }
+    }
   }
 }
+
+
 //footer
 .footer{
   background: #4f553c;

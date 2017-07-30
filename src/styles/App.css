@@ -35,6 +35,14 @@ body {
     min-height: 750px;
     height: 100%;
     width: 50%; }
+    .App-intro .right-box .photo {
+      display: flex;
+      flex-wrap: nowrap;
+      max-width: 100%; }
+      .App-intro .right-box .photo .renderedPics {
+        display: flex;
+        flex-wrap: nowrap;
+        max-width: 100%; }
 
 .footer {
   background: #4f553c;
