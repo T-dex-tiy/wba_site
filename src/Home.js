@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import firebase from 'firebase';
+import Dropbox from 'dropbox';
 import Rebase from 're-base';
 import TopNav from "./navbar/TopNav.js";
 import Footer from './main/footer.js';
@@ -17,7 +18,21 @@ const app= firebase.initializeApp({
   storageBucket: "wba-site.appspot.com",
 });
 
+const dbx = new Dropbox({ accessToken: 'h6N_EYnf5PQAAAAAAABY1Jks79ye_U6M8MyTMVQ4Xf3JktJ2Z8mWTgkUi9ZD9Ces' });
+
+dbx.filesListFolder({path: '/' })
+  .then(function(response) {
+    console.log('response', response.entries);
+  })
+  .catch(function(error) {
+    console.log("Error", error);
+  });
+
+console.log(dbx.filesListFolder());
+
 const base = Rebase.createClass(app.database());
+
+
 
 
 class App extends Component {
@@ -34,6 +49,7 @@ class App extends Component {
       context: this,
       state: 'data',
     });
+
   }
   componentWillUnmount(){
   base.removeBinding(this.ref);
