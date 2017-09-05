@@ -12,6 +12,9 @@ class DisplayPic extends Component {
           <div>
           <img className="renderedPics" src={datedPics.photo}/>
           </div>
+          <div>
+            <img className="gallery"/>
+          </div>
         </div>
      )
   }

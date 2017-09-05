@@ -12,23 +12,12 @@ import './styles/App.css';
 
 
 const app= firebase.initializeApp({
-  apiKey: "AIzaSyDxOMWtQdyQ4O83ZGFEkiChZL1iTwtj1TQ",
-  authDomain: "wba-site.firebaseapp.com",
-  databaseURL: "https://wba-site.firebaseio.com",
-  storageBucket: "wba-site.appspot.com",
+  apiKey: "AIzaSyCQXJ-iCdvSjz7DUzDn8G6xl6LNO58HV8E",
+  authDomain: "wba-trail-counting.firebaseapp.com",
+  databaseURL: "https://wba-trail-counting.firebaseio.com",
+  storageBucket: "wba-trail-counting.appspot.com",
 });
 
-const dbx = new Dropbox({ accessToken: 'h6N_EYnf5PQAAAAAAABY1Jks79ye_U6M8MyTMVQ4Xf3JktJ2Z8mWTgkUi9ZD9Ces' });
-
-dbx.filesListFolder({path: '/' })
-  .then(function(response) {
-    console.log('response', response.entries);
-  })
-  .catch(function(error) {
-    console.log("Error", error);
-  });
-
-console.log(dbx.filesListFolder());
 
 const base = Rebase.createClass(app.database());
 
