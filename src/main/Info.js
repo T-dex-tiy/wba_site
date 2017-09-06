@@ -9,7 +9,6 @@ class Info extends Component {
     return (
       <div className="left-box">
         <div className="loactionData">
-          <select id="dataSet">
           {
             Object
             .keys(this.props.displayLocation)
@@ -17,7 +16,6 @@ class Info extends Component {
               return <LocationNav key={key} index={key} locationInfo={this.props.displayLocation[key]}
               />})
             }
-          </select>
         </div>
       </div>
      )

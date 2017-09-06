@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import firebase from 'firebase';
-import Dropbox from 'dropbox';
 import Rebase from 're-base';
 import TopNav from "./navbar/TopNav.js";
 import Footer from './main/footer.js';
@@ -28,15 +27,15 @@ class App extends Component {
   constructor(props){
     super(props)
     this.state = {
-      data:{},
+      sourceData:{},
 
     }
   }
 
   componentDidMount(){
-    base.syncState(`data`, {
+    base.syncState(`sourceData`, {
       context: this,
-      state: 'data',
+      state: 'sourceData',
     });
 
   }
@@ -61,9 +60,9 @@ componentWillMount(){
       <div className="App">
         <div>
           <p className="App-intro">
-            <Info displayLocation={this.state.data}
+            <Info displayLocation={this.state.sourceData}
               eventEmitter={this.eventEmitter}/>
-            <Display displayPics={this.state.data}/>
+            <Display displayPics={this.state.sourceData}/>
           </p>
         </div>
         <div className="footer">
