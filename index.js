@@ -9,6 +9,6 @@ app.get('*', function(request, response){
   response.sendFile(__dirname + '/build/index.html')
 })
 
-app.listen(app.get('port'), function(){
-  console.log("Express server started on port", appe.get('port'))
+app.listen(app.get('port'), function() {
+  console.log("Express server started on port", app.get('port'))
 })
