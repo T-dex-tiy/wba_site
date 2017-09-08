@@ -17,13 +17,7 @@ class LocationNav extends Component {
     return (
       <div>
       <select id="dataSet">
-      {
-        Object
-        .keys(this.props.locationInfo)
-        .map(key=>{
-          return <Dropdown key={key} index={key} locationInfo={Object.keys(locationInfo)}
-          />})
-        }
+        <Dropdown locationInfo={locationInfo}/>
       </select>
       </div>
      )

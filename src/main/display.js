@@ -9,15 +9,7 @@ class Display extends Component {
     return (
       <div className="right-box">
         <div className="Pic">
-          {
-            Object
-            .keys(this.props.displayPics)
-            .map(key=>{
-              return <DisplayPic key={key}
-                index={key}
-                datedPics={this.props.displayPics[key]}
-                />})
-          }
+          <DisplayPic/>
         </div>
       </div>
      )

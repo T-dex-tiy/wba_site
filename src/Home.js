@@ -54,7 +54,19 @@ componentWillMount(){
     this.eventEmitter.addListener("updatePhoto", ({data}) => {
       this.userScreen({newDisplayPhoto: data})
     });
-}
+
+const data =
+  Object
+  .keys(this.state.sourceData)
+  .map(key=>{
+    let data={};
+    data[key]=key.value
+    localStorage.setItem('data', JSON.stringify(this.state.sourceData))
+    return data
+    })
+    console.log(data);
+    console.log(localStorage);
+  }
 
 
   render() {
@@ -63,7 +75,7 @@ componentWillMount(){
       <div className="App">
         <div>
           <p className="App-intro">
-            <Info displayLocation={this.state.sourceData}
+            <Info displayLocation={this.state.data}
               eventEmitter={this.eventEmitter}/>
             <Display displayPics={this.state.sourceData}/>
           </p>
