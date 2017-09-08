@@ -6,6 +6,11 @@ class LocationNav extends Component {
     super()
   }
 
+  //if statement goes here for rendering second dropdown select
+
+
+  //Leads into second map feature and new dropdown so Componentshouldmount()
+
   render() {
     const {locationInfo} = this.props;
     return (
@@ -15,7 +20,7 @@ class LocationNav extends Component {
         Object
         .keys(this.props.locationInfo)
         .map(key=>{
-          return <Dropdown key={key} index={key} locationInfo={this.props.locationInfo[key]}
+          return <Dropdown key={key} index={key} locationInfo={Object.keys(locationInfo)}
           />})
         }
       </select>

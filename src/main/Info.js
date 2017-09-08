@@ -9,13 +9,8 @@ class Info extends Component {
     return (
       <div className="left-box">
         <div className="loactionData">
-          {
-            Object
-            .keys(this.props.displayLocation)
-            .map(key=>{
-              return <LocationNav key={key} index={key} locationInfo={this.props.displayLocation[key]}
-              />})
-            }
+           <LocationNav locationInfo={this.props.displayLocation}
+              />
         </div>
       </div>
      )
