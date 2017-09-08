@@ -4,6 +4,7 @@ import Dropdown from '../dataNav/dropdownNav.js';
 class LocationNav extends Component {
   constructor(){
     super()
+
   }
 
   //if statement goes here for rendering second dropdown select
