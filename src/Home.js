@@ -23,6 +23,8 @@ const base = Rebase.createClass(app.database());
 
 
 
+
+
 class App extends Component {
   constructor(props){
     super(props)
@@ -32,12 +34,14 @@ class App extends Component {
     }
   }
 
+
+
+
   componentDidMount(){
     base.syncState(`sourceData`, {
       context: this,
       state: 'sourceData',
     });
-
   }
   componentWillUnmount(){
   base.removeBinding(this.ref);
@@ -50,7 +54,6 @@ componentWillMount(){
     this.eventEmitter.addListener("updatePhoto", ({data}) => {
       this.userScreen({newDisplayPhoto: data})
     });
-
 }
 
 
