@@ -42,6 +42,8 @@ class App extends Component {
       context: this,
       state: 'sourceData',
     });
+    const item = JSON.stringify(this.state.sourceData);
+    window.localStorage.setItem('data', item)
   }
   componentWillUnmount(){
   base.removeBinding(this.ref);
@@ -54,6 +56,13 @@ componentWillMount(){
     this.eventEmitter.addListener("updatePhoto", ({data}) => {
       this.userScreen({newDisplayPhoto: data})
     });
+
+
+//  const stringifyObj=
+//   Object.keys(this.state.sourceData).map(key=>{
+//    return stringifyObj[key]
+//  })
+// console.log(stringifyObj);
 }
 
 

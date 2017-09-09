@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Dropdown from '../dataNav/dropdownNav.js';
+import LocationDropdown from '../dataNav/LocationDropdown.js';
 
 class LocationNav extends Component {
   constructor(){
@@ -22,6 +23,15 @@ class LocationNav extends Component {
         .keys(this.props.locationInfo)
         .map(key=>{
           return <Dropdown key={key} index={key} locationInfo={Object.keys(locationInfo)}
+          />})
+        }
+      </select>
+      <select id="dataSet">
+      {
+        Object
+        .keys(this.props.locationInfo)
+        .map(key=>{
+          return <LocationDropdown key={key} index={key} locationInfo={locationInfo[key]}
           />})
         }
       </select>
