@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Dropdown from '../dataNav/dropdownNav.js';
+import LocationDropdown from '../dataNav/LocationDropdown.js';
 
 class LocationNav extends Component {
   constructor() {
