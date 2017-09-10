@@ -45,6 +45,7 @@ class LocationNav extends Component {
       {
         Object.keys(trailheads).filter(key => { return key != "key" }).map(key=>{
           return <Dropdown key={key} index={key}
+
           />})
         }
       </select>
