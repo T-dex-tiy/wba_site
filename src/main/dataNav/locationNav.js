@@ -3,9 +3,18 @@ import Dropdown from '../dataNav/dropdownNav.js';
 import LocationDropdown from '../dataNav/LocationDropdown.js';
 
 class LocationNav extends Component {
-  constructor(){
+  constructor() {
     super()
+    this.state = { season: null };
+    this.handleChange = this.handleChange.bind(this);
+  }
 
+  handleChange(event) {
+    if (event.target.name != "seasons") {
+      return;
+    }
+    var value = event.target.value;
+    this.setState({ season: value });
   }
 
   //if statement goes here for rendering second dropdown select
@@ -15,23 +24,28 @@ class LocationNav extends Component {
 
   render() {
     const {locationInfo} = this.props;
+    var seasons = Object.keys(this.props.locationInfo);
+    var selectedSeason = seasons[0];
+    if (this.state.season != null) {
+      selectedSeason = this.state.season;
+    }
+    var trailheads = Object(this.props.locationInfo[selectedSeason]);
     return (
       <div>
-      <select id="dataSet">
+      Season:
+      <select name="seasons" value={selectedSeason} onChange={this.handleChange}>
       {
-        Object
-        .keys(this.props.locationInfo)
-        .map(key=>{
+        seasons.filter(key => { return key != "key" }).map(key=>{
           return <Dropdown key={key} index={key} locationInfo={Object.keys(locationInfo)}
           />})
         }
       </select>
-      <select id="dataSet">
+      Trailhead:
+      <select name="trailheads" onChange={this.handleChange}>
       {
-        Object
-        .keys(this.props.locationInfo)
-        .map(key=>{
-          return <LocationDropdown key={key} index={key} locationInfo={locationInfo[key]}
+        Object.keys(trailheads).filter(key => { return key != "key" }).map(key=>{
+          return <Dropdown key={key} index={key}
+
           />})
         }
       </select>
