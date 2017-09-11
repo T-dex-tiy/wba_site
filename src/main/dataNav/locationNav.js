@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Dropdown from '../dataNav/dropdownNav.js';
+import DateDropdown from '../dataNav/dateDropdown.js';
 import LocationDropdown from '../dataNav/LocationDropdown.js';
 
 class LocationNav extends Component {
@@ -30,6 +31,24 @@ class LocationNav extends Component {
       selectedSeason = this.state.season;
     }
     var trailheads = Object(this.props.locationInfo[selectedSeason]);
+    var dates=[];
+    var displayDate=Object.keys(dates);
+
+    Object.keys(trailheads).forEach(key=>{
+      console.log(key);
+      console.log(trailheads[key]);
+      dates.push(trailheads[key])
+    }
+  );
+
+
+
+
+
+    console.log("dates",dates);
+    console.log("Seasons", seasons);
+    console.log("displayDate",displayDate);
+    console.log("trailheads", trailheads);
     return (
       <div>
       Season:
@@ -41,13 +60,21 @@ class LocationNav extends Component {
         }
       </select>
       Trailhead:
-      <select name="trailheads" onChange={this.handleChange}>
+      <select name="trailheads" value={trailheads} onChange={this.handleChange}>
       {
         Object.keys(trailheads).filter(key => { return key != "key" }).map(key=>{
           return <Dropdown key={key} index={key}
-
           />})
         }
+      </select>
+      Date:
+      <select name ="dates"onChange={this.handleChange} >
+      {
+        dates.map(key=>{
+          return <DateDropdown key={key} index ={key} />
+        })
+      }
+
       </select>
       </div>
      )
