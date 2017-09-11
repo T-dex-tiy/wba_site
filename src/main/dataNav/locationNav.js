@@ -36,7 +36,7 @@ class LocationNav extends Component {
     Object.keys(trailheads).filter(key => { return key != "key" }).forEach(key=>{
       console.log(key);
       console.log(trailheads[key]);
-      dates.push(trailheads[key])
+      dates = trailheads[key]
     }
   );
 
