@@ -9,7 +9,7 @@ class DateDrop extends Component {
     const {locationInfo} = this.props;
     return (
         <option className="locationDropdown">
-          {this.props.index}
+          {locationInfo}
         </option>
      )
   }

@@ -32,9 +32,8 @@ class LocationNav extends Component {
     }
     var trailheads = Object(this.props.locationInfo[selectedSeason]);
     var dates=[];
-    var displayDate=Object.keys(dates);
 
-    Object.keys(trailheads).forEach(key=>{
+    Object.keys(trailheads).filter(key => { return key != "key" }).forEach(key=>{
       console.log(key);
       console.log(trailheads[key]);
       dates.push(trailheads[key])
@@ -46,8 +45,6 @@ class LocationNav extends Component {
 
 
     console.log("dates",dates);
-    console.log("Seasons", seasons);
-    console.log("displayDate",displayDate);
     console.log("trailheads", trailheads);
     return (
       <div>
@@ -55,7 +52,7 @@ class LocationNav extends Component {
       <select name="seasons" value={selectedSeason} onChange={this.handleChange}>
       {
         seasons.filter(key => { return key != "key" }).map(key=>{
-          return <Dropdown key={key} index={key} locationInfo={Object.keys(locationInfo)}
+          return <Dropdown key={key} index={key}
           />})
         }
       </select>
@@ -68,13 +65,12 @@ class LocationNav extends Component {
         }
       </select>
       Date:
-      <select name ="dates"onChange={this.handleChange} >
-      {
-        dates.map(key=>{
-          return <DateDropdown key={key} index ={key} />
-        })
-      }
-
+      <select name ="dates" value={dates} onChange={this.handleChange} >
+        {
+          Object.keys(dates).filter(key => { return key != "key" }).map(key=>{
+            return <DateDropdown key={key} index={key}
+            />})
+          }
       </select>
       </div>
      )
