@@ -76,3 +76,21 @@ body{
   color:white;
   align-content: stretch;
 }
+.locationData{
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.displaydata{
+  justify-content: center;
+  align-content: center;
+}
+.inputData{
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+}
+.dateTrailhead{
+  display: flex;
+  flex-direction: row;
+}

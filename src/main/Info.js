@@ -7,11 +7,9 @@ class Info extends Component {
   }
   render() {
     return (
-      <div className="left-box">
-        <div className="loactionData">
+      <div className="left-box locationData">
            <LocationNav locationInfo={this.props.displayLocation}
               />
-        </div>
       </div>
      )
   }
