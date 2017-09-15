@@ -9,13 +9,13 @@ class LocationDisplay extends Component {
 
     return (
       <div>
-        <div><h4>Testing Area:</h4></div>
+        <div><h4>Season:</h4></div>
         <div><p>Data goes here</p></div>
-        <div><h4>Testing Area:</h4></div>
+        <div><h4>Trailhead:</h4></div>
         <div><p>Data goes here</p></div>
-        <div><h4>Testing Area:</h4></div>
+        <div><h4>Date:</h4></div>
         <div><p>Data goes here</p></div>
-        <div><h4>Testing Area:</h4></div>
+        <div><input type="radio" value="counted">This area has been counted</input></div>
       </div>
      )
   }
