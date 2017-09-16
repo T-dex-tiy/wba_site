@@ -8,16 +8,23 @@ import Input from '../dataNav/input.js';
 class LocationNav extends Component {
   constructor() {
     super()
-    this.state = { season: null };
+    this.state = {
+      season: null,
+      trailheads:null,
+      date:null,
+     };
     this.handleChange = this.handleChange.bind(this);
   }
 
   handleChange(event) {
-    if (event.target.name != "seasons") {
+    if (event.target.name !== "seasons") {
       return;
     }
     var value = event.target.value;
-    this.setState({ season: value });
+    console.log(event.target);
+    this.setState({
+       season: value,
+      });
   }
 
   //if statement goes here for rendering second dropdown select
@@ -32,10 +39,13 @@ class LocationNav extends Component {
     if (this.state.season != null) {
       selectedSeason = this.state.season;
     }
+    if(this.state.trailheads !== null){
+      trailheads=trailheads
+    }
     var trailheads = Object(this.props.locationInfo[selectedSeason]);
     var dates=[];
 
-    Object.keys(trailheads).filter(key => { return key != "key" }).forEach(key=>{
+    Object.keys(trailheads).filter(key => { return key !== "key" }).forEach(key=>{
       console.log(key);
       console.log(trailheads[key]);
       dates = trailheads[key]
@@ -54,7 +64,7 @@ class LocationNav extends Component {
           Season:
           <select name="seasons" value={selectedSeason} onChange={this.handleChange}>
           {
-            seasons.filter(key => { return key != "key" }).map(key=>{
+            seasons.filter(key => { return key !== "key" }).map(key=>{
               return <Dropdown key={key} index={key}
               />})
             }
@@ -62,21 +72,21 @@ class LocationNav extends Component {
           Trailhead:
           <select name="trailheads" value={trailheads} onChange={this.handleChange}>
           {
-            Object.keys(trailheads).filter(key => { return key != "key" }).map(key=>{
+            Object.keys(trailheads).filter(key => { return key !== "key" }).map(key=>{
               return <Dropdown key={key} index={key}
               />})
             }
           </select>
           Date:
-          <select name ="dates" value={dates} onChange={this.handleChange} >
+          <select name ="dates" value={dates}>
             {
-              Object.keys(dates).filter(key => { return key != "key" }).map(key=>{
+              Object.keys(dates).filter(key => { return key !== "key" }).map(key=>{
                 return <DateDropdown key={key} index={key}
                 />})
               }
           </select>
         </div>
-      <div className="displaydata"><LocationDisplay/></div>
+      <div className="displaydata" ><LocationDisplay dates={this.state.season}/></div>
       <div><Input/></div>
       </div>
      )
