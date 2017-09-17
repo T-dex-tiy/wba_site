@@ -30,7 +30,9 @@ class App extends Component {
     super(props)
     this.state = {
       sourceData:{},
-
+      season: null,
+      trailheads: null,
+      date:null,
     }
   }
 
@@ -56,14 +58,39 @@ componentWillMount(){
     this.eventEmitter.addListener("updatePhoto", ({data}) => {
       this.userScreen({newDisplayPhoto: data})
     });
-
-
-//  const stringifyObj=
-//   Object.keys(this.state.sourceData).map(key=>{
-//    return stringifyObj[key]
-//  })
-// console.log(stringifyObj);
 }
+
+handleChange(event) {
+  if (event.target.name !== "seasons") {
+    return;
+  }
+  var seasonValue = event.target.value;
+  this.setState({
+     season: seasonValue,
+    });
+}
+handleChangeTrailhead(event) {
+  if (event.target.name !== "trailheads") {
+    return;
+  }
+  var trailheadValues = event.target.value;
+  console.log(trailheadValues);
+  this.setState({
+     trailheads: trailheadValues,
+    });
+}
+
+handleChangeDay(event) {
+  if (event.target.name !== "dates") {
+    return;
+  }
+  var dateValue = event.target.value;
+  console.log(dateValue);
+  this.setState({
+     date: dateValue,
+    });
+}
+
 
 
   render() {
@@ -72,8 +99,7 @@ componentWillMount(){
       <div className="App">
         <div>
           <p className="App-intro">
-            <Info displayLocation={this.state.sourceData}
-              eventEmitter={this.eventEmitter}/>
+            <Info displayLocation={this.state.sourceData} season={this.state.season} trailheads={this.state.trailheads} date={this.state.date} handleChange={this.handleChange.bind(this)} handleChangeTrailhead={this.handleChangeTrailhead.bind(this)} handleChangeDay={this.handleChangeDay.bind(this)} />
             <Display displayPics={this.state.sourceData}/>
           </p>
         </div>
