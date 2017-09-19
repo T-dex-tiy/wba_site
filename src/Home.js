@@ -30,6 +30,7 @@ class App extends Component {
     super(props)
     this.state = {
       sourceData:{},
+      countData:{},
       season: null,
       trailheads: null,
       date:null,
@@ -43,6 +44,10 @@ class App extends Component {
     base.syncState(`sourceData`, {
       context: this,
       state: 'sourceData',
+    });
+    base.syncState(`countData`, {
+      context: this,
+      state: 'countData',
     });
     const item = JSON.stringify(this.state.sourceData);
     window.localStorage.setItem('data', item)
@@ -91,6 +96,14 @@ handleChangeDay(event) {
     });
 }
 
+updateCountData(addData){
+  const newData= {...this.state.countData}
+  const key ="t"+ Date.now()
+  newData.key= key
+  newData[key]=addData
+  this.setState({countData:newData})
+}
+
 
 
   render() {
@@ -99,7 +112,7 @@ handleChangeDay(event) {
       <div className="App">
         <div>
           <p className="App-intro">
-            <Info displayLocation={this.state.sourceData} season={this.state.season} trailheads={this.state.trailheads} date={this.state.date} handleChange={this.handleChange.bind(this)} handleChangeTrailhead={this.handleChangeTrailhead.bind(this)} handleChangeDay={this.handleChangeDay.bind(this)} />
+            <Info displayLocation={this.state.sourceData} season={this.state.season} trailheads={this.state.trailheads} date={this.state.date} handleChange={this.handleChange.bind(this)} handleChangeTrailhead={this.handleChangeTrailhead.bind(this)} handleChangeDay={this.handleChangeDay.bind(this)} updateCountData={this.updateCountData.bind(this)} />
             <Display displayPics={this.state.sourceData}/>
           </p>
         </div>

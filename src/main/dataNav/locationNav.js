@@ -9,46 +9,9 @@ class LocationNav extends Component {
   constructor() {
     super()
 
-    // props.handleChange = this.handleChange.bind(this);
-    // this.handleChangeTrailhead = this.handleChangeTrailhead.bind(this);
-    // this.handleChangeDay = this.handleChangeDay.bind(this);
+
   }
 
-  // handleChange(event) {
-  //   if (event.target.name !== "seasons") {
-  //     return;
-  //   }
-  //   var seasonValue = event.target.value;
-  //   this.setState({
-  //      season: seasonValue,
-  //     });
-  // }
-  // handleChangeTrailhead(event) {
-  //   if (event.target.name !== "trailheads") {
-  //     return;
-  //   }
-  //   var trailheadValues = event.target.value;
-  //   console.log(trailheadValues);
-  //   this.setState({
-  //      trailheads: trailheadValues,
-  //     });
-  // }
-  //
-  // handleChangeDay(event) {
-  //   if (event.target.name !== "dates") {
-  //     return;
-  //   }
-  //   var dateValue = event.target.value;
-  //   console.log(dateValue);
-  //   this.setState({
-  //      date: dateValue,
-  //     });
-  // }
-
-  //if statement goes here for rendering second dropdown select
-
-
-  //Leads into second map feature and new dropdown so Componentshouldmount()
 
   render() {
     const {locationInfo} = this.props;
@@ -98,7 +61,7 @@ class LocationNav extends Component {
           </select>
         </div>
       <div className="displaydata" ><LocationDisplay seasons={this.props.season} trailheads= {this.props.trailheads} day={this.props.date}/></div>
-      <div><Input trailheads={this.props.trailheads} day={this.props.date}/></div>
+      <div><Input trailheads={this.props.trailheads} day={this.props.date} updateCountData={this.props.updateCountData}/></div>
       </div>
      )
   }

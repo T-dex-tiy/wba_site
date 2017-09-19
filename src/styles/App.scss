@@ -93,4 +93,14 @@ body{
 .dateTrailhead{
   display: flex;
   flex-direction: row;
+  justify-content: flex-end;
+  align-content: flex-end;
+}
+
+.btn{
+  display:flex;
+  align-items: flex-end;
+}
+.button{
+  align-items: flex-end;
 }
