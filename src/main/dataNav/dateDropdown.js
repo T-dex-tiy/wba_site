@@ -7,7 +7,7 @@ class DateDrop extends Component {
 
   render() {
     return (
-        <option className="locationDropdown">
+        <option className="locationDropdown" value= {this.props.index}>
           {this.props.index}
         </option>
      )
