@@ -36,7 +36,7 @@ class LocationNav extends Component {
       <div className="locationData">
         <div className="dateTrailhead">
           Season:
-          <select name="seasons" value={selectedSeason} onChange={this.props.handleChange}>
+          <select name="seasons" placeholder="Select a Season" value={selectedSeason} onChange={this.props.handleChange}>
           {
             seasons.filter(key => { return key !== "key" }).map(key=>{
               return <Dropdown key={key} index={key}
@@ -44,7 +44,7 @@ class LocationNav extends Component {
             }
           </select>
           Trailhead:
-          <select name="trailheads" value={this.props.trailheads} onChange={this.props.handleChangeTrailhead}>
+          <select name="trailheads" placeholder="Select a Trailhead" value={this.props.trailheads} onChange={this.props.handleChangeTrailhead}>
           {
             Object.keys(trailheads).filter(key => { return key !== "key" }).map(key=>{
               return <Dropdown key={key} index={key}
@@ -52,7 +52,7 @@ class LocationNav extends Component {
             }
           </select>
           Date:
-          <select name ="dates" value={this.props.date} onChange={this.props.handleChangeDay}>
+          <select name ="dates" placeholder="Select a Date" value={this.props.date} onChange={this.props.handleChangeDay}>
             {
               Object.keys(dates).filter(key => { return key !== "key" }).map(key=>{
                 return <DateDropdown key={key} index={key}

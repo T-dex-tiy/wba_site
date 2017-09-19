@@ -98,9 +98,18 @@ handleChangeDay(event) {
 
 updateCountData(addData){
   const newData= {...this.state.countData}
-  const key ="t"+ Date.now()
-  newData.key= key
-  newData[key]=addData
+  const time = new Date();
+  const minutes = time.getMinutes();
+  const hour = time.getHours();
+  const year = time.getFullYear();
+  const key =`${hour} : ${minutes} ${year}`;
+  newData.key= key;
+  newData[key]=addData;
+  console.log(time);
+  console.log(minutes);
+  console.log(key);
+  console.log(year);
+  console.log(newData);
   this.setState({countData:newData})
 }
 
