@@ -105,11 +105,6 @@ updateCountData(addData){
   const key =`${hour} : ${minutes} ${year}`;
   newData.key= key;
   newData[key]=addData;
-  console.log(time);
-  console.log(minutes);
-  console.log(key);
-  console.log(year);
-  console.log(newData);
   this.setState({countData:newData})
 }
 
