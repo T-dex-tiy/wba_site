@@ -101,10 +101,15 @@ updateCountData(addData){
   const time = new Date();
   const minutes = time.getMinutes();
   const hour = time.getHours();
+  const month = time.getMonth();
+  const day = time.getDay();
   const year = time.getFullYear();
-  const key =`${hour} : ${minutes} ${year}`;
+  const key =`${hour} : ${minutes}, ${day},${month} ,${year}`;
   newData.key= key;
   newData[key]=addData;
+console.log(month);
+console.log(day);
+
   this.setState({countData:newData})
 }
 
