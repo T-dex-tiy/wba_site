@@ -10,7 +10,7 @@ import Auth from './Auth.js';
 import './styles/App.css';
 
 
-const app= firebase.initializeApp({)
+const app= firebase.initializeApp({
   apiKey: "AIzaSyCQXJ-iCdvSjz7DUzDn8G6xl6LNO58HV8E",
   authDomain: "wba-trail-counting.firebaseapp.com",
   databaseURL: "https://wba-trail-counting.firebaseio.com",
