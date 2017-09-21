@@ -15,22 +15,35 @@ class LocationNav extends Component {
 
   render() {
     const {locationInfo} = this.props;
-    var seasons = Object.keys(this.props.locationInfo);
+    var seasons = Object.keys(locationInfo);
+    var trailheads = [];
+    var dates = [];
     var selectedSeason = seasons[0];
+    var selectedTrailhead = null;
+    var selectedDate = null;
+
     if (this.props.season != null) {
       selectedSeason = this.props.season;
     }
-    if(this.props.trailheads !== null){
-      trailheads=trailheads
-    }
-    var trailheads = Object(this.props.locationInfo[selectedSeason]);
-    var dates=[];
 
-    Object.keys(trailheads).filter(key => { return key !== "key" }).forEach(key=>{
-      dates = trailheads[key]
+    if (locationInfo[selectedSeason]) {
+      selectedTrailhead = Object.keys(locationInfo[selectedSeason]).filter(key => { return key !== "key" })[0];
     }
-  );
+    if (this.props.trailhead != null) {
+      selectedTrailhead = this.props.trailhead
+      console.log("selectedTrailhead: " + selectedTrailhead);
+    }
 
+    if (selectedSeason) {
+      trailheads = Object.keys(locationInfo[selectedSeason]);
+    }
+    console.log("selectedSeason: " + selectedSeason + ", selectedTrailhead: " + selectedTrailhead);
+
+    if (selectedTrailhead) {
+      Object.keys(locationInfo[selectedSeason][selectedTrailhead]).filter(key => { return key !== "key" }).forEach(key => {
+        dates.push(key);
+      });
+    }
 
     return (
       <div className="locationData">
@@ -44,9 +57,9 @@ class LocationNav extends Component {
             }
           </select>
           Trailhead:
-          <select name="trailheads" placeholder="Select a Trailhead" value={this.props.trailheads} onChange={this.props.handleChangeTrailhead}>
+          <select name="trailheads" placeholder="Select a Trailhead" value={this.props.trailhead} onChange={this.props.handleChangeTrailhead}>
           {
-            Object.keys(trailheads).filter(key => { return key !== "key" }).map(key=>{
+            trailheads.filter(key => { return key !== "key" }).map(key=>{
               return <Dropdown key={key} index={key}
               />})
             }
@@ -54,7 +67,7 @@ class LocationNav extends Component {
           Date:
           <select name ="dates" placeholder="Select a Date" value={this.props.date} onChange={this.props.handleChangeDay}>
             {
-              Object.keys(dates).filter(key => { return key !== "key" }).map(key=>{
+              dates.map(key=>{
                 return <DateDropdown key={key} index={key}
                 />})
               }
