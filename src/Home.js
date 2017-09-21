@@ -104,11 +104,11 @@ updateCountData(addData){
   const month = time.getMonth();
   const day = time.getDay();
   const year = time.getFullYear();
-  const key =`${hour} : ${minutes}, ${day},${month} ,${year}`;
+  const key =`${hour} : ${minutes}, ${month} ,${day}${year}`;
   newData.key= key;
   newData[key]=addData;
-console.log(month);
-console.log(day);
+ console.log(month);
+ console.log(day);
 
   this.setState({countData:newData})
 }
@@ -122,7 +122,7 @@ console.log(day);
         <div>
           <p className="App-intro">
             <Info displayLocation={this.state.sourceData} season={this.state.season} trailheads={this.state.trailheads} date={this.state.date} handleChange={this.handleChange.bind(this)} handleChangeTrailhead={this.handleChangeTrailhead.bind(this)} handleChangeDay={this.handleChangeDay.bind(this)} updateCountData={this.updateCountData.bind(this)} />
-            <Display displayPics={this.state.sourceData}/>
+            <Display displayPics={this.state.sourceData} season={this.state.season} trailhead={this.state.trailheads} date={this.state.date}/>
           </p>
         </div>
         <div className="footer">

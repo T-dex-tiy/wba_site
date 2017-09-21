@@ -5,6 +5,7 @@ class Display extends Component {
   constructor(){
     super()
   }
+  console.log(this.props);
   render() {
     return (
       <div className="right-box">
