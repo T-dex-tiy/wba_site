@@ -10,7 +10,7 @@ class DisplayPic extends Component {
     return (
         <div className="photo">
           <div>
-          <img className="renderedPics" src={datedPics.photo}/>
+          <img className="renderedPics" src={datedPics.path}/>
           </div>
           <div>
             <img className="gallery"/>

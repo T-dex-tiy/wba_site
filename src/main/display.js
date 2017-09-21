@@ -6,21 +6,24 @@ class Display extends Component {
     super()
   }
   render() {
-    const season = this.props.season
-    const trailhead = this.props.trailhead
-    const date = this.props.date
-    if (season != null && trailhead != null) {// && date != null && this.props.displayPics[season][trailhead][date] != null) {
-      console.log("date: " + date + ", object: " + JSON.stringify(this.props.displayPics[season][trailhead][date]));
+    const season = this.props.season;
+    const trailhead = this.props.trailhead;
+    const date = this.props.date;
+    var observations = [];
+    if (season != null && this.props.displayPics[season] != null && trailhead != null && this.props.displayPics[season][trailhead] != null && date != null) {
+      observations = this.props.displayPics[season][trailhead][date]
+    }
+    if (observations != null) {
       return (
         <div className="right-box">
           <div className="Pic">
           {
             Object
-            .keys(this.props.displayPics[season][trailhead][date])
+            .keys(observations)
             .map(key=>{
               return <DisplayPic key={key}
                 index={key}
-                datedPics={this.props.displayPics[key]}
+                datedPics={observations[key]}
                 />})
           }
           </div>
