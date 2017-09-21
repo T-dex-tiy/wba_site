@@ -78,10 +78,10 @@ handleChangeTrailhead(event) {
   if (event.target.name !== "trailheads") {
     return;
   }
-  var trailheadValues = event.target.value;
-  console.log(trailheadValues);
+  var trailheadValue = event.target.value;
+  console.log(trailheadValue);
   this.setState({
-     trailheads: trailheadValues,
+     trailhead: trailheadValue,
     });
 }
 
@@ -121,8 +121,8 @@ updateCountData(addData){
       <div className="App">
         <div>
           <p className="App-intro">
-            <Info displayLocation={this.state.sourceData} season={this.state.season} trailheads={this.state.trailheads} date={this.state.date} handleChange={this.handleChange.bind(this)} handleChangeTrailhead={this.handleChangeTrailhead.bind(this)} handleChangeDay={this.handleChangeDay.bind(this)} updateCountData={this.updateCountData.bind(this)} />
-            <Display displayPics={this.state.sourceData} season={this.state.season} trailhead={this.state.trailheads} date={this.state.date}/>
+            <Info displayLocation={this.state.sourceData} season={this.state.season} trailhead={this.state.trailhead} date={this.state.date} handleChange={this.handleChange.bind(this)} handleChangeTrailhead={this.handleChangeTrailhead.bind(this)} handleChangeDay={this.handleChangeDay.bind(this)} updateCountData={this.updateCountData.bind(this)} />
+            <Display displayPics={this.state.sourceData} season={this.state.season} trailhead={this.state.trailhead} date={this.state.date}/>
           </p>
         </div>
         <div className="footer">
