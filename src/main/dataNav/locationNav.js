@@ -64,13 +64,14 @@ class LocationNav extends Component {
             value={selectedSeason}
             onChange={this.props.handleChangeSeason}
           >
+            [<Dropdown key="empty" index="Select a Season" />].concat(
             {seasons
               .filter(key => {
                 return key !== 'key';
               })
               .map(key => {
                 return <Dropdown key={key} index={key} />;
-              })}
+              })})
           </select>
           Trailhead:
           <select
@@ -79,13 +80,14 @@ class LocationNav extends Component {
             value={this.props.trailhead}
             onChange={this.props.handleChangeTrailhead}
           >
+            [<Dropdown key="empty" index="Select a Trailhead" />].concat(
             {trailheads
               .filter(key => {
                 return key !== 'key';
               })
               .map(key => {
                 return <Dropdown key={key} index={key} />;
-              })}
+              })})
           </select>
           Date:
           <select
@@ -94,9 +96,10 @@ class LocationNav extends Component {
             value={this.props.date}
             onChange={this.props.handleChangeDay}
           >
+            [<DateDropdown key="empty" index="Select a Date" />].concat
             {dates.map(key => {
               return <DateDropdown key={key} index={key} />;
-            })}
+            })})
           </select>
         </div>
         <div className="displaydata">

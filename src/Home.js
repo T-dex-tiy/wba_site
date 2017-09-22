@@ -1,128 +1,143 @@
 import React, { Component } from 'react';
 import firebase from 'firebase';
 import Rebase from 're-base';
-import TopNav from "./navbar/TopNav.js";
+import TopNav from './navbar/TopNav.js';
 import Footer from './main/footer.js';
 import Info from './main/Info.js';
+import dropbox from 'dropbox';
 import Display from './main/display.js';
-import {EventEmitter} from 'events';
+import { EventEmitter } from 'events';
 import Auth from './Auth.js';
 import './styles/App.css';
 
-
-const app= firebase.initializeApp({
-  apiKey: "AIzaSyCQXJ-iCdvSjz7DUzDn8G6xl6LNO58HV8E",
-  authDomain: "wba-trail-counting.firebaseapp.com",
-  databaseURL: "https://wba-trail-counting.firebaseio.com",
-  storageBucket: "wba-trail-counting.appspot.com",
+const app = firebase.initializeApp({
+  apiKey: 'AIzaSyCQXJ-iCdvSjz7DUzDn8G6xl6LNO58HV8E',
+  authDomain: 'wba-trail-counting.firebaseapp.com',
+  databaseURL: 'https://wba-trail-counting.firebaseio.com',
+  storageBucket: 'wba-trail-counting.appspot.com'
 });
-
 
 const base = Rebase.createClass(app.database());
 
-
-
-
-
+var Dropbox = require('dropbox');
+var dbx = new Dropbox({
+  accessToken:
+    'dLZ2mHAXz3AAAAAAAAR9QCBlO4f8uS2Jm2ZHm2udxP6HPUt6s4S87a3Eox2ERHrr'
+});
+dbx
+  .filesListFolder({ path: '' })
+  .then(function(response) {
+    console.log(response);
+  })
+  .catch(function(error) {
+    console.log(error);
+  });
 
 class App extends Component {
-  constructor(props){
-    super(props)
+  constructor(props) {
+    super(props);
     this.state = {
-      sourceData:{},
-      countData:{},
+      sourceData: {},
+      countData: {},
       season: null,
       trailheads: null,
-      date:null,
-    }
+      date: null
+    };
   }
 
-
-
-
-  componentDidMount(){
+  componentDidMount() {
     base.syncState(`sourceData`, {
       context: this,
-      state: 'sourceData',
+      state: 'sourceData'
     });
     base.syncState(`countData`, {
       context: this,
-      state: 'countData',
+      state: 'countData'
     });
     const item = JSON.stringify(this.state.sourceData);
-    window.localStorage.setItem('data', item)
+    window.localStorage.setItem('data', item);
   }
-  componentWillUnmount(){
-  base.removeBinding(this.ref);
-}
-
-
-componentWillMount(){
-  this.eventEmitter = new EventEmitter()
-
-    this.eventEmitter.addListener("updatePhoto", ({data}) => {
-      this.userScreen({newDisplayPhoto: data})
-    });
-}
-
-handleChange(event) {
-  if (event.target.name !== "seasons") {
-    return;
+  componentWillUnmount() {
+    base.removeBinding(this.ref);
   }
-  var seasonValue = event.target.value;
-  this.setState({
-     season: seasonValue,
+
+  componentWillMount() {
+    this.eventEmitter = new EventEmitter();
+
+    this.eventEmitter.addListener('updatePhoto', ({ data }) => {
+      this.userScreen({ newDisplayPhoto: data });
     });
-}
-handleChangeTrailhead(event) {
-  if (event.target.name !== "trailheads") {
-    return;
   }
-  var trailheadValue = event.target.value;
-  console.log(trailheadValue);
-  this.setState({
-     trailhead: trailheadValue,
-    });
-}
 
-handleChangeDay(event) {
-  if (event.target.name !== "dates") {
-    return;
+  handleChange(event) {
+    if (event.target.name !== 'seasons') {
+      return;
+    }
+    var seasonValue = event.target.value;
+    this.setState({
+      season: seasonValue
+    });
   }
-  var dateValue = event.target.value;
-  console.log(dateValue);
-  this.setState({
-     date: dateValue,
+  handleChangeTrailhead(event) {
+    if (event.target.name !== 'trailheads') {
+      return;
+    }
+    var trailheadValue = event.target.value;
+    console.log(trailheadValue);
+    this.setState({
+      trailhead: trailheadValue
     });
-}
+  }
 
-updateCountData(addData){
-  const newData= {...this.state.countData}
-  const time = new Date();
-  const minutes = time.getMinutes();
-  const hour = time.getHours();
-  const month = time.getMonth();
-  const day = time.getDay();
-  const year = time.getFullYear();
-  const key =`${hour} : ${minutes}, ${month} ,${day}${year}`;
-  newData.key= key;
-  newData[key]=addData;
- console.log(month);
- console.log(day);
+  handleChangeDay(event) {
+    if (event.target.name !== 'dates') {
+      return;
+    }
+    var dateValue = event.target.value;
+    console.log(dateValue);
+    this.setState({
+      date: dateValue
+    });
+  }
 
-  this.setState({countData:newData})
-}
+  updateCountData(addData) {
+    const newData = { ...this.state.countData };
+    const time = new Date();
+    const minutes = time.getMinutes();
+    const hour = time.getHours();
+    const month = time.getMonth();
+    const day = time.getDay();
+    const year = time.getFullYear();
+    const key = `${hour} : ${minutes}, ${month} ,${day}${year}`;
+    newData.key = key;
+    newData[key] = addData;
+    console.log(month);
+    console.log(day);
 
-
+    this.setState({ countData: newData });
+  }
 
   render() {
-
     return (
       <div className="App">
         <div>
           <p className="App-intro">
-            <Info displayLocation={this.state.sourceData} season={this.state.season} trailhead={this.state.trailhead} date={this.state.date} handleChange={this.handleChange.bind(this)} handleChangeTrailhead={this.handleChangeTrailhead.bind(this)} handleChangeDay={this.handleChangeDay.bind(this)} updateCountData={this.updateCountData.bind(this)} />
-            <Display displayPics={this.state.sourceData} season={this.state.season} trailhead={this.state.trailhead} date={this.state.date}/>
+            <Info
+              displayLocation={this.state.sourceData}
+              season={this.state.season}
+              trailhead={this.state.trailhead}
+              date={this.state.date}
+              handleChange={this.handleChange.bind(this)}
+              handleChangeTrailhead={this.handleChangeTrailhead.bind(this)}
+              handleChangeDay={this.handleChangeDay.bind(this)}
+              updateCountData={this.updateCountData.bind(this)}
+            />
+            <Display
+              displayPics={this.state.sourceData}
+              season={this.state.season}
+              trailhead={this.state.trailhead}
+              date={this.state.date}
+            />
           </p>
         </div>
         <div className="footer">
