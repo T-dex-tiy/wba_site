@@ -9,8 +9,8 @@ class Input extends Component {
   addData(event){
     const newCourseData={
       date:this.refs.date.value,
-      trailheads:this.refs.trailheadData.value,
-      Vistors:this.refs.vistorCount.value,
+      trailhead:this.refs.trailheadData.value,
+      vistors:this.refs.vistorCount.value,
     }
     event.preventDefault();
 

@@ -8,8 +8,6 @@ import Input from '../dataNav/input.js';
 class LocationNav extends Component {
   constructor() {
     super()
-
-
   }
 
 
@@ -31,13 +29,11 @@ class LocationNav extends Component {
     }
     if (this.props.trailhead != null) {
       selectedTrailhead = this.props.trailhead
-      console.log("selectedTrailhead: " + selectedTrailhead);
     }
 
     if (selectedSeason) {
       trailheads = Object.keys(locationInfo[selectedSeason]);
     }
-    console.log("selectedSeason: " + selectedSeason + ", selectedTrailhead: " + selectedTrailhead);
 
     if (selectedTrailhead) {
       Object.keys(locationInfo[selectedSeason][selectedTrailhead]).filter(key => { return key !== "key" }).forEach(key => {
@@ -49,7 +45,7 @@ class LocationNav extends Component {
       <div className="locationData">
         <div className="dateTrailhead">
           Season:
-          <select name="seasons" placeholder="Select a Season" value={selectedSeason} onChange={this.props.handleChange}>
+          <select name="seasons" placeholder="Select a Season" value={selectedSeason} onChange={this.props.handleChangeSeason}>
           {
             seasons.filter(key => { return key !== "key" }).map(key=>{
               return <Dropdown key={key} index={key}
@@ -73,8 +69,8 @@ class LocationNav extends Component {
               }
           </select>
         </div>
-      <div className="displaydata" ><LocationDisplay seasons={this.props.season} trailheads= {this.props.trailheads} day={this.props.date}/></div>
-      <div><Input trailheads={this.props.trailheads} day={this.props.date} updateCountData={this.props.updateCountData}/></div>
+      <div className="displaydata" ><LocationDisplay seasons={this.props.season} trailhead={this.props.trailhead} day={this.props.date}/></div>
+      <div><Input trailheads={this.props.trailhead} day={this.props.date} updateCountData={this.props.updateCountData}/></div>
       </div>
      )
   }
