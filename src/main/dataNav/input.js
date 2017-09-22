@@ -10,7 +10,7 @@ class Input extends Component {
     const newCourseData={
       date:this.refs.date.value,
       trailhead:this.refs.trailheadData.value,
-      vistors:this.refs.vistorCount.value,
+      Vistors:this.refs.vistorCount.value,
     }
     event.preventDefault();
 
@@ -22,7 +22,7 @@ class Input extends Component {
     return (
       <div className= "inputData dateTrailhead">
         <div><h4>Date</h4><input type="text" ref="date"value={this.props.day}></input></div>
-        <div><h4>Location</h4><input type="text" ref="trailheadData" value={this.props.trailheads}></input></div>
+        <div><h4>Location</h4><input type="text" ref="trailheadData" value={this.props.trailhead}></input></div>
         <div><h4>Unique Vistors</h4><input type="text" ref="vistorCount"/></div>
         <div className= "btn"><button className= "button" onClick={this.addData}>Submit</button></div>
       </div>

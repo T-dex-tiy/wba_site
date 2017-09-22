@@ -27,18 +27,21 @@ class LocationNav extends Component {
     if (locationInfo[selectedSeason]) {
       selectedTrailhead = Object.keys(locationInfo[selectedSeason]).filter(key => { return key !== "key" })[0];
     }
+
     if (this.props.trailhead != null) {
       selectedTrailhead = this.props.trailhead
     }
 
     if (selectedSeason) {
       trailheads = Object.keys(locationInfo[selectedSeason]);
+      console.log("figuring this out", locationInfo[selectedSeason][selectedTrailhead]);
+      if (locationInfo[selectedSeason][selectedTrailhead]!=null){
+        if (selectedTrailhead) {
+          Object.keys(locationInfo[selectedSeason][selectedTrailhead]).filter(key => { return key !== "key" }).forEach(key => {
+            dates.push(key);
+          });
+      }
     }
-
-    if (selectedTrailhead) {
-      Object.keys(locationInfo[selectedSeason][selectedTrailhead]).filter(key => { return key !== "key" }).forEach(key => {
-        dates.push(key);
-      });
     }
 
     return (

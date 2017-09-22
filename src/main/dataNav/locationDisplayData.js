@@ -9,7 +9,7 @@ class LocationDisplay extends Component {
     return (
       <div>
         <div><h4>Season:</h4></div>
-        <div><p>{this.props.season}</p></div>
+        <div><p>{this.props.seasons}</p></div>
         <div><h4>Trailhead:</h4></div>
         <div><p>{this.props.trailhead}</p></div>
         <div><h4>Date:</h4></div>

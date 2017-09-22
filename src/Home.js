@@ -32,8 +32,8 @@ class App extends Component {
       sourceData:{},
       countData:{},
       season: null,
-      trailhead: null,
-      date: null
+      trailheads: null,
+      date:null,
     }
   }
 
@@ -65,7 +65,7 @@ componentWillMount(){
     });
 }
 
-handleChangeSeason(event) {
+handleChange(event) {
   if (event.target.name !== "seasons") {
     return;
   }
@@ -79,6 +79,7 @@ handleChangeTrailhead(event) {
     return;
   }
   var trailheadValue = event.target.value;
+  console.log(trailheadValue);
   this.setState({
      trailhead: trailheadValue,
     });
@@ -89,6 +90,7 @@ handleChangeDay(event) {
     return;
   }
   var dateValue = event.target.value;
+  console.log(dateValue);
   this.setState({
      date: dateValue,
     });
@@ -119,7 +121,7 @@ updateCountData(addData){
       <div className="App">
         <div>
           <p className="App-intro">
-            <Info displayLocation={this.state.sourceData} season={this.state.season} trailhead={this.state.trailhead} date={this.state.date} handleChange={this.handleChangeSeason.bind(this)} handleChangeTrailhead={this.handleChangeTrailhead.bind(this)} handleChangeDay={this.handleChangeDay.bind(this)} updateCountData={this.updateCountData.bind(this)} />
+            <Info displayLocation={this.state.sourceData} season={this.state.season} trailhead={this.state.trailhead} date={this.state.date} handleChange={this.handleChange.bind(this)} handleChangeTrailhead={this.handleChangeTrailhead.bind(this)} handleChangeDay={this.handleChangeDay.bind(this)} updateCountData={this.updateCountData.bind(this)} />
             <Display displayPics={this.state.sourceData} season={this.state.season} trailhead={this.state.trailhead} date={this.state.date}/>
           </p>
         </div>
