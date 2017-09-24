@@ -4,7 +4,7 @@ import Rebase from 're-base';
 import TopNav from './navbar/TopNav.js';
 import Footer from './main/footer.js';
 import Info from './main/Info.js';
-import dropbox from 'dropbox';
+// import dropbox from 'dropbox';
 import Display from './main/display.js';
 import { EventEmitter } from 'events';
 import Auth from './Auth.js';
@@ -19,19 +19,19 @@ const app = firebase.initializeApp({
 
 const base = Rebase.createClass(app.database());
 
-var Dropbox = require('dropbox');
-var dbx = new Dropbox({
-  accessToken:
-    'dLZ2mHAXz3AAAAAAAAR9QCBlO4f8uS2Jm2ZHm2udxP6HPUt6s4S87a3Eox2ERHrr'
-});
-dbx
-  .filesListFolder({ path: '' })
-  .then(function(response) {
-    console.log(response);
-  })
-  .catch(function(error) {
-    console.log(error);
-  });
+// var Dropbox = require('dropbox');
+// var dbx = new Dropbox({
+//   accessToken:
+//     'dLZ2mHAXz3AAAAAAAAR9QCBlO4f8uS2Jm2ZHm2udxP6HPUt6s4S87a3Eox2ERHrr'
+// });
+// dbx
+//   .filesListFolder({ path: '' })
+//   .then(function(response) {
+//     console.log(response);
+//   })
+//   .catch(function(error) {
+//     console.log(error);
+//   });
 
 class App extends Component {
   constructor(props) {
@@ -40,6 +40,7 @@ class App extends Component {
       seasons: {},
       trailheads: [],
       dates: [],
+      observations: null,
       countData: {},
       season: null,
       trailhead: null,
@@ -79,7 +80,8 @@ class App extends Component {
       trailheads: this.state.seasons[seasonValue]['trailheads'],
       trailhead: null,
       dates: [],
-      date: null
+      date: null,
+      observations: null
     });
   }
   handleChangeTrailhead(event) {
@@ -93,7 +95,8 @@ class App extends Component {
         this.setState({
           trailhead: trailheadValue,
           dates: data['dates'],
-          date: null
+          date: null,
+          observations: null
         });
       }
     });
@@ -104,9 +107,15 @@ class App extends Component {
       return;
     }
     var dateValue = event.target.value;
-    console.log(dateValue);
-    this.setState({
-      date: dateValue
+    base.fetch('observations/' + this.state.season + '-' + this.state.trailhead + '-' + dateValue, {
+      context: this,
+      then(data) {
+        console.log(data['times']);
+        this.setState({
+          date: dateValue,
+          observations: data['times']
+        });
+      }
     });
   }
 
@@ -145,10 +154,7 @@ class App extends Component {
               updateCountData={this.updateCountData.bind(this)}
             />
             <Display
-              displayPics={this.state.seasons}
-              season={this.state.season}
-              trailhead={this.state.trailhead}
-              date={this.state.date}
+              observations={this.state.observations}
             />
           </p>
         </div>
