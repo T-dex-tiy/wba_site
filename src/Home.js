@@ -37,25 +37,25 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      sourceData: {},
+      seasons: {},
+      trailheads: [],
+      dates: [],
       countData: {},
       season: null,
-      trailheads: null,
+      trailhead: null,
       date: null
     };
   }
 
   componentDidMount() {
-    base.syncState(`sourceData`, {
+    base.syncState(`seasons`, {
       context: this,
-      state: 'sourceData'
+      state: 'seasons'
     });
     base.syncState(`countData`, {
       context: this,
       state: 'countData'
     });
-    const item = JSON.stringify(this.state.sourceData);
-    window.localStorage.setItem('data', item);
   }
   componentWillUnmount() {
     base.removeBinding(this.ref);
@@ -75,7 +75,11 @@ class App extends Component {
     }
     var seasonValue = event.target.value;
     this.setState({
-      season: seasonValue
+      season: seasonValue,
+      trailheads: this.state.seasons[seasonValue]['trailheads'],
+      trailhead: null,
+      dates: [],
+      date: null
     });
   }
   handleChangeTrailhead(event) {
@@ -83,9 +87,15 @@ class App extends Component {
       return;
     }
     var trailheadValue = event.target.value;
-    console.log(trailheadValue);
-    this.setState({
-      trailhead: trailheadValue
+    base.fetch('season-trailhead-dates/' + this.state.season + '-' + trailheadValue, {
+      context: this,
+      then(data) {
+        this.setState({
+          trailhead: trailheadValue,
+          dates: data['dates'],
+          date: null
+        });
+      }
     });
   }
 
@@ -123,9 +133,11 @@ class App extends Component {
         <div>
           <p className="App-intro">
             <Info
-              displayLocation={this.state.sourceData}
+              seasons={Object.keys(this.state.seasons)}
               season={this.state.season}
+              trailheads={this.state.trailheads}
               trailhead={this.state.trailhead}
+              dates={this.state.dates}
               date={this.state.date}
               handleChange={this.handleChange.bind(this)}
               handleChangeTrailhead={this.handleChangeTrailhead.bind(this)}
@@ -133,7 +145,7 @@ class App extends Component {
               updateCountData={this.updateCountData.bind(this)}
             />
             <Display
-              displayPics={this.state.sourceData}
+              displayPics={this.state.seasons}
               season={this.state.season}
               trailhead={this.state.trailhead}
               date={this.state.date}
