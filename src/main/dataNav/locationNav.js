@@ -8,51 +8,19 @@ import Input from '../dataNav/input.js';
 class LocationNav extends Component {
   constructor() {
     super();
+    // We store dates in state here because we load the dates specific to a selected season and trailhead.
+    this.state = {
+      dates: null
+    };
   }
 
   render() {
-    const { locationInfo } = this.props;
-    var seasons = Object.keys(locationInfo);
-    var trailheads = [];
-    var dates = [];
-    var selectedSeason = seasons[0];
-    var selectedTrailhead = null;
-    var selectedDate = null;
-
-    if (this.props.season != null) {
-      selectedSeason = this.props.season;
-    }
-
-    if (locationInfo[selectedSeason]) {
-      selectedTrailhead = Object.keys(
-        locationInfo[selectedSeason]
-      ).filter(key => {
-        return key !== 'key';
-      })[0];
-    }
-
-    if (this.props.trailhead != null) {
-      selectedTrailhead = this.props.trailhead;
-    }
-
-    if (selectedSeason) {
-      trailheads = Object.keys(locationInfo[selectedSeason]);
-      console.log(
-        'figuring this out',
-        locationInfo[selectedSeason][selectedTrailhead]
-      );
-      if (locationInfo[selectedSeason][selectedTrailhead] != null) {
-        if (selectedTrailhead) {
-          Object.keys(locationInfo[selectedSeason][selectedTrailhead])
-            .filter(key => {
-              return key !== 'key';
-            })
-            .forEach(key => {
-              dates.push(key);
-            });
-        }
-      }
-    }
+    var seasons = this.props.seasons;
+    var trailheads = this.props.trailheads;
+    var dates = this.props.dates;
+    var selectedSeason = this.props.season;
+    var selectedTrailhead = this.props.trailhead;
+    var selectedDate = this.props.date;
 
     return (
       <div className="locationData">
@@ -64,42 +32,34 @@ class LocationNav extends Component {
             value={selectedSeason}
             onChange={this.props.handleChangeSeason}
           >
-            [<Dropdown key="empty" index="Select a Season" />].concat(
-            {seasons
-              .filter(key => {
-                return key !== 'key';
-              })
-              .map(key => {
+            [<Dropdown key="empty" index="Select a Season" />].concat({ seasons.map(key => {
                 return <Dropdown key={key} index={key} />;
-              })})
+              })
+            })
           </select>
           Trailhead:
           <select
             name="trailheads"
             placeholder="Select a Trailhead"
-            value={this.props.trailhead}
+            value={selectedTrailhead}
             onChange={this.props.handleChangeTrailhead}
           >
-            [<Dropdown key="empty" index="Select a Trailhead" />].concat(
-            {trailheads
-              .filter(key => {
-                return key !== 'key';
-              })
-              .map(key => {
+            [<Dropdown key="empty" index="Select a Trailhead" />].concat({ trailheads.map(key => {
                 return <Dropdown key={key} index={key} />;
-              })})
+              })
+            })
           </select>
           Date:
           <select
             name="dates"
             placeholder="Select a Date"
-            value={this.props.date}
+            value={selectedDate}
             onChange={this.props.handleChangeDay}
           >
-            [<DateDropdown key="empty" index="Select a Date" />].concat
-            {dates.map(key => {
+            [<DateDropdown key="empty" index="Select a Date" />].concat({ dates.map(key => {
               return <DateDropdown key={key} index={key} />;
-            })})
+            })
+          })
           </select>
         </div>
         <div className="displaydata">

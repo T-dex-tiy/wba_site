@@ -4,7 +4,7 @@ import Rebase from 're-base';
 import TopNav from './navbar/TopNav.js';
 import Footer from './main/footer.js';
 import Info from './main/Info.js';
-import dropbox from 'dropbox';
+// import dropbox from 'dropbox';
 import Display from './main/display.js';
 import { EventEmitter } from 'events';
 import Auth from './Auth.js';
@@ -19,43 +19,44 @@ const app = firebase.initializeApp({
 
 const base = Rebase.createClass(app.database());
 
-var Dropbox = require('dropbox');
-var dbx = new Dropbox({
-  accessToken:
-    'dLZ2mHAXz3AAAAAAAAR9QCBlO4f8uS2Jm2ZHm2udxP6HPUt6s4S87a3Eox2ERHrr'
-});
-dbx
-  .filesListFolder({ path: '' })
-  .then(function(response) {
-    console.log(response);
-  })
-  .catch(function(error) {
-    console.log(error);
-  });
+// var Dropbox = require('dropbox');
+// var dbx = new Dropbox({
+//   accessToken:
+//     'dLZ2mHAXz3AAAAAAAAR9QCBlO4f8uS2Jm2ZHm2udxP6HPUt6s4S87a3Eox2ERHrr'
+// });
+// dbx
+//   .filesListFolder({ path: '' })
+//   .then(function(response) {
+//     console.log(response);
+//   })
+//   .catch(function(error) {
+//     console.log(error);
+//   });
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      sourceData: {},
+      seasons: {},
+      trailheads: [],
+      dates: [],
+      observations: null,
       countData: {},
       season: null,
-      trailheads: null,
+      trailhead: null,
       date: null
     };
   }
 
   componentDidMount() {
-    base.syncState(`sourceData`, {
+    base.syncState(`seasons`, {
       context: this,
-      state: 'sourceData'
+      state: 'seasons'
     });
     base.syncState(`countData`, {
       context: this,
       state: 'countData'
     });
-    const item = JSON.stringify(this.state.sourceData);
-    window.localStorage.setItem('data', item);
   }
   componentWillUnmount() {
     base.removeBinding(this.ref);
@@ -75,7 +76,12 @@ class App extends Component {
     }
     var seasonValue = event.target.value;
     this.setState({
-      season: seasonValue
+      season: seasonValue,
+      trailheads: this.state.seasons[seasonValue]['trailheads'],
+      trailhead: null,
+      dates: [],
+      date: null,
+      observations: null
     });
   }
   handleChangeTrailhead(event) {
@@ -83,9 +89,16 @@ class App extends Component {
       return;
     }
     var trailheadValue = event.target.value;
-    console.log(trailheadValue);
-    this.setState({
-      trailhead: trailheadValue
+    base.fetch('season-trailhead-dates/' + this.state.season + '-' + trailheadValue, {
+      context: this,
+      then(data) {
+        this.setState({
+          trailhead: trailheadValue,
+          dates: data['dates'],
+          date: null,
+          observations: null
+        });
+      }
     });
   }
 
@@ -94,9 +107,15 @@ class App extends Component {
       return;
     }
     var dateValue = event.target.value;
-    console.log(dateValue);
-    this.setState({
-      date: dateValue
+    base.fetch('observations/' + this.state.season + '-' + this.state.trailhead + '-' + dateValue, {
+      context: this,
+      then(data) {
+        console.log(data['times']);
+        this.setState({
+          date: dateValue,
+          observations: data['times']
+        });
+      }
     });
   }
 
@@ -123,9 +142,11 @@ class App extends Component {
         <div>
           <p className="App-intro">
             <Info
-              displayLocation={this.state.sourceData}
+              seasons={Object.keys(this.state.seasons)}
               season={this.state.season}
+              trailheads={this.state.trailheads}
               trailhead={this.state.trailhead}
+              dates={this.state.dates}
               date={this.state.date}
               handleChange={this.handleChange.bind(this)}
               handleChangeTrailhead={this.handleChangeTrailhead.bind(this)}
@@ -133,10 +154,7 @@ class App extends Component {
               updateCountData={this.updateCountData.bind(this)}
             />
             <Display
-              displayPics={this.state.sourceData}
-              season={this.state.season}
-              trailhead={this.state.trailhead}
-              date={this.state.date}
+              observations={this.state.observations}
             />
           </p>
         </div>
