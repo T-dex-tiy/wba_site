@@ -40,6 +40,8 @@ body {
     flex-direction: row;
     align-items: stretch;
     min-height: 750px;
+    max-height: 25vh;
+    overflow-y: scroll;
     height: 100%;
     width: 50%;
 
