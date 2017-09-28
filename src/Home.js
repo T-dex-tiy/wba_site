@@ -89,17 +89,20 @@ class App extends Component {
       return;
     }
     var trailheadValue = event.target.value;
-    base.fetch('season-trailhead-dates/' + this.state.season + '-' + trailheadValue, {
-      context: this,
-      then(data) {
-        this.setState({
-          trailhead: trailheadValue,
-          dates: data['dates'],
-          date: null,
-          observations: null
-        });
+    base.fetch(
+      'season-trailhead-dates/' + this.state.season + '-' + trailheadValue,
+      {
+        context: this,
+        then(data) {
+          this.setState({
+            trailhead: trailheadValue,
+            dates: data['dates'],
+            date: null,
+            observations: null
+          });
+        }
       }
-    });
+    );
   }
 
   handleChangeDay(event) {
@@ -107,16 +110,24 @@ class App extends Component {
       return;
     }
     var dateValue = event.target.value;
-    base.fetch('observations/' + this.state.season + '-' + this.state.trailhead + '-' + dateValue, {
-      context: this,
-      then(data) {
-        console.log(data['times']);
-        this.setState({
-          date: dateValue,
-          observations: data['times']
-        });
+    base.fetch(
+      'observations/' +
+        this.state.season +
+        '-' +
+        this.state.trailhead +
+        '-' +
+        dateValue,
+      {
+        context: this,
+        then(data) {
+          console.log(data['times']);
+          this.setState({
+            date: dateValue,
+            observations: data['times']
+          });
+        }
       }
-    });
+    );
   }
 
   updateCountData(addData) {
@@ -153,9 +164,7 @@ class App extends Component {
               handleChangeDay={this.handleChangeDay.bind(this)}
               updateCountData={this.updateCountData.bind(this)}
             />
-            <Display
-              observations={this.state.observations}
-            />
+            <Display observations={this.state.observations} />
           </p>
         </div>
         <div className="footer">
