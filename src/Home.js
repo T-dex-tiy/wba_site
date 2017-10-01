@@ -44,7 +44,9 @@ class App extends Component {
       countData: {},
       season: null,
       trailhead: null,
-      date: null
+      date: null,
+      url: null,
+      show: true
     };
   }
 
@@ -60,14 +62,6 @@ class App extends Component {
   }
   componentWillUnmount() {
     base.removeBinding(this.ref);
-  }
-
-  componentWillMount() {
-    this.eventEmitter = new EventEmitter();
-
-    this.eventEmitter.addListener('updatePhoto', ({ data }) => {
-      this.userScreen({ newDisplayPhoto: data });
-    });
   }
 
   handleChange(event) {
@@ -164,7 +158,11 @@ class App extends Component {
               handleChangeDay={this.handleChangeDay.bind(this)}
               updateCountData={this.updateCountData.bind(this)}
             />
-            <Display observations={this.state.observations} />
+            <Display
+              observations={this.state.observations}
+              url={this.state.url}
+              show={this.state.show}
+            />
           </p>
         </div>
         <div className="footer">

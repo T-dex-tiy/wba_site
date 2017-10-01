@@ -13,6 +13,12 @@ class Input extends Component {
       Vistors: this.refs.vistorCount.value,
       user: this.refs.user.value
     };
+    if (this.refs.user.value == '') {
+      alert('Please enter Name!');
+    }
+    if (this.refs.vistorCount.value == '') {
+      alert('Please enter number!');
+    }
     event.preventDefault();
 
     this.props.updateCountData(newCourseData);

@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 
 class Footer extends Component {
-  constructor(){
-    super()
+  constructor() {
+    super();
   }
   render() {
     return (
       <div className="footer">
-        <p>test1</p>
+        <a href="http://wasatchbackcountryalliance.org/">Main Page</a>
       </div>
-     )
+    );
   }
 }
 
-export default Footer
+export default Footer;

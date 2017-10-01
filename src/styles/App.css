@@ -63,6 +63,13 @@ body {
   width: 100%;
   color: white;
   align-content: stretch; }
+  .footer a {
+    text-decoration: none;
+    color: white; }
+  .footer a:hover {
+    text-decoration: underline;
+    color: white;
+    font-size: 105%; }
 
 .locationData {
   display: flex;
