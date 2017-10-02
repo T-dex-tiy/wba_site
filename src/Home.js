@@ -46,7 +46,9 @@ class App extends Component {
       trailhead: null,
       date: null,
       url: null,
-      show: true
+      show: {
+        view: false
+      }
     };
   }
 
@@ -141,6 +143,15 @@ class App extends Component {
     this.setState({ countData: newData });
   }
 
+  showPhoto(event) {
+    const viewState = this.state.show;
+    const type = event.target.name;
+    const val = event.target.checked;
+    viewState[type] = val;
+
+    this.setState({ show: viewState });
+  }
+
   render() {
     return (
       <div className="App">
@@ -162,6 +173,7 @@ class App extends Component {
               observations={this.state.observations}
               url={this.state.url}
               show={this.state.show}
+              showPhoto={this.showPhoto.bind(this)}
             />
           </p>
         </div>

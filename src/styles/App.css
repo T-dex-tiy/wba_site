@@ -97,4 +97,7 @@ body {
 .button {
   align-items: flex-end; }
 
+.display {
+  visibility: hidden; }
+
 /*# sourceMappingURL=App.css.map */

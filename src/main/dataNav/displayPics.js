@@ -10,6 +10,7 @@ var dbx = new Dropbox({
 class DisplayPic extends Component {
   constructor() {
     super();
+    this.display = this.display.bind(this);
   }
 
   componentDidMount() {
@@ -24,12 +25,23 @@ class DisplayPic extends Component {
       });
   }
 
+  display(event) {
+    console.log(this.props.index, 'is clicked');
+    console.log(this.defaultValue, 'test');
+    console.log(this.value, 'val');
+  }
+
   render() {
     return (
       <div className="photo">
         <div>
           <img className="renderedPics" src={this.props.url} />
-          <input type="checkbox" show={this.props.show} />
+          <input
+            type="checkbox"
+            value="display"
+            onChange={this.display}
+            name="show"
+          />
           <label>Has been counted?</label>
         </div>
         <div>

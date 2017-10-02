@@ -21,6 +21,7 @@ class Display extends Component {
                   observation={observations[key]}
                   url={url}
                   show={show}
+                  showPhoto={this.props.showPhoto.bind(this)}
                 />
               );
             })}
