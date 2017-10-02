@@ -4,7 +4,6 @@ import Rebase from 're-base';
 import TopNav from './navbar/TopNav.js';
 import Footer from './main/footer.js';
 import Info from './main/Info.js';
-// import dropbox from 'dropbox';
 import Display from './main/display.js';
 import { EventEmitter } from 'events';
 import Auth from './Auth.js';
@@ -19,20 +18,6 @@ const app = firebase.initializeApp({
 
 const base = Rebase.createClass(app.database());
 
-// var Dropbox = require('dropbox');
-// var dbx = new Dropbox({
-//   accessToken:
-//     'dLZ2mHAXz3AAAAAAAAR9QCBlO4f8uS2Jm2ZHm2udxP6HPUt6s4S87a3Eox2ERHrr'
-// });
-// dbx
-//   .filesListFolder({ path: '' })
-//   .then(function(response) {
-//     console.log(response);
-//   })
-//   .catch(function(error) {
-//     console.log(error);
-//   });
-
 class App extends Component {
   constructor(props) {
     super(props);
@@ -46,9 +31,7 @@ class App extends Component {
       trailhead: null,
       date: null,
       url: null,
-      show: {
-        view: false
-      }
+      show: ''
     };
   }
 

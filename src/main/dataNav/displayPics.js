@@ -26,9 +26,8 @@ class DisplayPic extends Component {
   }
 
   display(event) {
-    console.log(this.props.index, 'is clicked');
-    console.log(this.defaultValue, 'test');
-    console.log(this.value, 'val');
+    console.log(event.target.value);
+    console.log(clicked);
   }
 
   render() {
@@ -38,7 +37,7 @@ class DisplayPic extends Component {
           <img className="renderedPics" src={this.props.url} />
           <input
             type="checkbox"
-            value="display"
+            value={this.props.index}
             onChange={this.display}
             name="show"
           />
