@@ -112,9 +112,24 @@ class App extends Component {
   updateCountData(addData) {
     const newData = { ...this.state.countData };
     const time = new Date();
-    const minutes = time.getMinutes();
+    const minutesRaw = time.getMinutes().toString();
+    const minutes = minutesRaw.length < 2 ? '0' + minutesRaw : minutesRaw;
     const hour = time.getHours();
-    const month = time.getMonth();
+    const months = [
+      'Jan',
+      'Feb',
+      'Mar',
+      'Apr',
+      'May',
+      'Jun',
+      'Jul',
+      'Aug',
+      'Sep',
+      'Oct',
+      'Nov',
+      'Dec'
+    ];
+    const month = months[time.getMonth()];
     const day = time.getDay();
     const year = time.getFullYear();
     const key = `${hour} : ${minutes}, ${month} ,${day}${year}`;

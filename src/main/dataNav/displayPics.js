@@ -27,7 +27,6 @@ class DisplayPic extends Component {
 
   display(event) {
     console.log(event.target.value);
-    console.log(clicked);
   }
 
   render() {

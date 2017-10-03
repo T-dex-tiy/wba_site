@@ -21,12 +21,15 @@ class Input extends Component {
     }
     event.preventDefault();
 
+    if (this.refs.user.value || this.refs.vistorCount.value != '') {
+      alert('Thanks for counting!');
+    }
     this.props.updateCountData(newCourseData);
   }
 
   render() {
     return (
-      <div className="inputData dateTrailhead">
+      <div className="inputData dateTrailhead" id="inputDataFields">
         <div>
           <h4>Date</h4>
           <input type="text" ref="date" value={this.props.day} />
