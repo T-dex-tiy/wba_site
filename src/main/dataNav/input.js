@@ -23,8 +23,10 @@ class Input extends Component {
 
     if (this.refs.user.value || this.refs.vistorCount.value != '') {
       alert('Thanks for counting!');
+      this.props.updateCountData(newCourseData);
     }
-    this.props.updateCountData(newCourseData);
+    console.log(newCourseData);
+    console.log(this.input);
   }
 
   render() {

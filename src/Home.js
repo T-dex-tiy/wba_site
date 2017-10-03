@@ -132,11 +132,9 @@ class App extends Component {
     const month = months[time.getMonth()];
     const day = time.getDay();
     const year = time.getFullYear();
-    const key = `${hour} : ${minutes}, ${month} ,${day}${year}`;
+    const key = `${hour} : ${minutes}, ${month} ${day}, ${year}`;
     newData.key = key;
     newData[key] = addData;
-    console.log(month);
-    console.log(day);
 
     this.setState({ countData: newData });
   }
