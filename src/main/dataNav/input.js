@@ -25,8 +25,10 @@ class Input extends Component {
       alert('Thanks for counting!');
       this.props.updateCountData(newCourseData);
     }
-    console.log(newCourseData);
-    console.log(this.input);
+    const updatedData = (document.getElementById('count1').value = '');
+    document.getElementById('count2').value = '';
+    //Don't know if this is needed but added for testing sake
+    console.log(updatedData);
   }
 
   render() {
@@ -42,11 +44,11 @@ class Input extends Component {
         </div>
         <div>
           <h4>Unique Vistors</h4>
-          <input type="text" ref="vistorCount" />
+          <input type="text" ref="vistorCount" id="count1" />
         </div>
         <div>
           <h4>Counter Info</h4>
-          <input type="text" ref="user" />
+          <input type="text" ref="user" id="count2" />
         </div>
         <div className="btn">
           <button className="button" onClick={this.addData}>
