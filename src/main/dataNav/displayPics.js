@@ -26,7 +26,8 @@ class DisplayPic extends Component {
   }
 
   display(event) {
-    console.log(event.target.value);
+    const checked = document.querySelectorAll('input').checked;
+    console.log(checked.id);
   }
 
   render() {
