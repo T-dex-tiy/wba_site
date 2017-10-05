@@ -107,6 +107,7 @@ class App extends Component {
         }
       }
     );
+    console.log(this.state.observations);
   }
 
   updateCountData(addData) {

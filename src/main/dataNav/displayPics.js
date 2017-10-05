@@ -11,6 +11,9 @@ class DisplayPic extends Component {
   constructor() {
     super();
     this.display = this.display.bind(this);
+    this.state = {
+      url: null
+    };
   }
 
   componentDidMount() {
@@ -26,15 +29,15 @@ class DisplayPic extends Component {
   }
 
   display(event) {
+    console.log(this.props.url);
     const checked = document.querySelectorAll('input').checked;
-    console.log(checked.id);
   }
 
   render() {
     return (
       <div className="photo">
         <div>
-          <img className="renderedPics" src={this.props.url} />
+          <img className="renderedPics" src={this.state.url} />
           <input
             type="checkbox"
             value={this.props.index}
