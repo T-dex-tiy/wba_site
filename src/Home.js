@@ -30,7 +30,6 @@ class App extends Component {
       season: null,
       trailhead: null,
       date: null,
-      url: null,
       show: ''
     };
   }
@@ -100,6 +99,7 @@ class App extends Component {
         context: this,
         then(data) {
           console.log(data['times']);
+          console.log(data['times'].length);
           this.setState({
             date: dateValue,
             observations: data['times']
