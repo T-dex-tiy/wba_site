@@ -168,6 +168,7 @@ class App extends Component {
             />
             <Display
               observations={this.state.observations}
+              trailhead={this.state.trailhead}
               url={this.state.url}
               show={this.state.show}
               showPhoto={this.showPhoto.bind(this)}

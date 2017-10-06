@@ -13,7 +13,10 @@ class Display extends Component {
       return (
         <div className="right-box">
           <div>
-            <h4>{this.props.observations.length}-Observations in this area</h4>
+            <h4>
+              {this.props.observations.length}-Observations in{' '}
+              {this.props.trailhead} area
+            </h4>
           </div>
           <div className="Pic">
             {Object.keys(observations).map(key => {
