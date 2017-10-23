@@ -27,6 +27,9 @@ class DisplayPic extends Component {
         console.log(error);
       });
   }
+  // componentWillUnmount() {
+  //   displayPic.removeBinding(this.ref);
+  // }
 
   display(event) {
     const checked = document.querySelectorAll('input').checked;
@@ -45,9 +48,6 @@ class DisplayPic extends Component {
             name="show"
           />
           <label>Has been counted?</label>
-        </div>
-        <div>
-          <img className="gallery" />
         </div>
       </div>
     );

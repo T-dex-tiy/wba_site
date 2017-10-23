@@ -17,6 +17,7 @@ body {
   display: flex;
   flex-direction: row; }
   .App-intro .left-box {
+    flex-wrap: wrap;
     border: solid black 1px;
     padding: 2px;
     margin: 2px;
@@ -96,6 +97,10 @@ body {
 
 .button {
   align-items: flex-end; }
+
+.gallery {
+  height: 10vh;
+  width: 75vh; }
 
 .display {
   visibility: hidden; }
