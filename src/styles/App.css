@@ -1,21 +1,33 @@
 body {
-  font-family: 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif; }
+  font-family: 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
+}
+
+.App {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
 
 .App-header {
   display: flex;
   flex-direction: row-reverse;
   justify-content: space-between;
   align-items: center;
-  height: 5.5em;
+  height: 76px;
   background-color: #ffcc00;
-  width: 100%; }
+  width: 100%;
+  }
   .App-header .Directory {
     display: flex;
-    justify-content: flex-end; }
+    justify-content: flex-end;
+   }
 
 .App-intro {
   display: flex;
-  flex-direction: row; }
+  flex-direction: row;
+  flex: 1;
+  max-height: 90vh;
+ }
   .App-intro .left-box {
     flex-wrap: wrap;
     border: solid black 1px;
@@ -25,52 +37,58 @@ body {
     justify-content: flex-start;
     align-items: stretch;
     min-height: 750px;
-    height: 100%;
-    width: 50%; }
+    max-height: 100vh;
+    width: 50%;
+    flex: 1;
+   }
   .App-intro .right-box {
     border: solid black 1px;
     padding: 2px;
     margin: 2px;
-    flex-direction: row;
     align-items: stretch;
     min-height: 750px;
-    max-height: 25vh;
+    max-height: 100vh;
     overflow-y: scroll;
-    height: 100%;
-    width: 50%; }
+    width: 50%;
+   }
     .App-intro .right-box .photo {
       display: flex;
       flex-wrap: nowrap;
-      max-width: 100%; }
+      max-width: 100%;
+    }
       .App-intro .right-box .photo .renderedPics {
         display: flex;
         flex: 4;
         flex-wrap: nowrap;
         max-width: 100%;
-        height: 100vh;
-        width: 150vh;
-        border: 1px solid red; }
+        max-height: 33%;
+        border: 1px solid;
+       }
       .App-intro .right-box .photo .gallery {
         display: flex;
         border: 1px solid red;
-        height: 25px; }
+        height: 25px;
+      }
 
 .footer {
   background: #4f553c;
   display: flex;
   flex-direction: row-reverse;
   justify-content: flex-start space-between;
-  height: 155px;
+  height: 76px;
   width: 100%;
   color: white;
-  align-content: stretch; }
+  align-content: stretch;
+ }
   .footer a {
     text-decoration: none;
-    color: white; }
+    color: white;
+   }
   .footer a:hover {
     text-decoration: underline;
     color: white;
-    font-size: 105%; }
+    font-size: 105%;
+   }
 
 .locationData {
   display: flex;
@@ -84,12 +102,6 @@ body {
 .inputData {
   flex-direction: row-reverse;
   justify-content: flex-end; }
-
-.dateTrailhead {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-  align-content: flex-end; }
 
 .btn {
   display: flex;

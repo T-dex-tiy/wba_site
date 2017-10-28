@@ -12,25 +12,25 @@ class Display extends Component {
     if (observations != null) {
       return (
         <div className="right-box">
-          <div>
-            <h4>
-              {this.props.observations.length} observations
-            </h4>
-          </div>
-          <div className="Pic">
-            {Object.keys(observations).map(key => {
-              return (
-                <DisplayPic
-                  key={key}
-                  index={key}
-                  observation={observations[key]}
-                  url={url}
-                  show={show}
-                  showPhoto={this.props.showPhoto.bind(this)}
-                />
-              );
-            })}
-          </div>
+            <div>
+              <h4>
+                {this.props.observations.length} observations
+              </h4>
+            </div>
+            <div className="Pic">
+              {Object.keys(observations).map(key => {
+                return (
+                  <DisplayPic
+                    key={key}
+                    index={key}
+                    observation={observations[key]}
+                    url={url}
+                    show={show}
+                    showPhoto={this.props.showPhoto.bind(this)}
+                  />
+                );
+              })}
+            </div>
         </div>
       );
     } else {

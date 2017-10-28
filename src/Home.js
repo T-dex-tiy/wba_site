@@ -150,32 +150,28 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <div>
-          <div className="App-intro">
-            <Info
-              seasons={Object.keys(this.state.seasons)}
-              season={this.state.season}
-              trailheads={this.state.trailheads}
-              trailhead={this.state.trailhead}
-              dates={this.state.dates}
-              date={this.state.date}
-              handleChange={this.handleChange.bind(this)}
-              handleChangeTrailhead={this.handleChangeTrailhead.bind(this)}
-              handleChangeDay={this.handleChangeDay.bind(this)}
-              updateCountData={this.updateCountData.bind(this)}
-            />
-            <Display
-              observations={this.state.observations}
-              trailhead={this.state.trailhead}
-              url={this.state.url}
-              show={this.state.show}
-              showPhoto={this.showPhoto.bind(this)}
-            />
-          </div>
+        <div className="App-intro">
+          <Info
+            seasons={Object.keys(this.state.seasons)}
+            season={this.state.season}
+            trailheads={this.state.trailheads}
+            trailhead={this.state.trailhead}
+            dates={this.state.dates}
+            date={this.state.date}
+            handleChange={this.handleChange.bind(this)}
+            handleChangeTrailhead={this.handleChangeTrailhead.bind(this)}
+            handleChangeDay={this.handleChangeDay.bind(this)}
+            updateCountData={this.updateCountData.bind(this)}
+          />
+          <Display
+            observations={this.state.observations}
+            trailhead={this.state.trailhead}
+            url={this.state.url}
+            show={this.state.show}
+            showPhoto={this.showPhoto.bind(this)}
+          />
         </div>
-        <div className="footer">
-          <Footer />
-        </div>
+        <Footer />
       </div>
     );
   }

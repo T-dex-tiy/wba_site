@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Dropdown from '../dataNav/dropdownNav.js';
 import DateDropdown from '../dataNav/dateDropdown.js';
 import LocationDropdown from '../dataNav/LocationDropdown.js';
-import LocationDisplay from '../dataNav/locationDisplayData.js';
 import Input from '../dataNav/input.js';
 
 class LocationNav extends Component {
@@ -33,7 +32,7 @@ class LocationNav extends Component {
 
     return (
       <div className="locationData">
-        <div className="dateTrailhead">
+        <div>
           Season:
           <select
             name="seasons"
@@ -71,17 +70,11 @@ class LocationNav extends Component {
           })
           </select>
         </div>
-        <div className="displaydata">
-          <LocationDisplay
-            seasons={this.props.season}
-            trailhead={this.props.trailhead}
-            day={this.props.date}
-          />
-        </div>
         <div>
           <Input
+            season={this.props.season}
             trailhead={this.props.trailhead ? this.props.trailhead : ""}
-            day={this.props.date ? this.props.date : ""}
+            date={this.props.date ? this.props.date : ""}
             updateCountData={this.props.updateCountData ? this.props.updateCountData : 0}
           />
         </div>
