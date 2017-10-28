@@ -88,6 +88,7 @@ class App extends Component {
       return;
     }
     var dateValue = event.target.value;
+    this.setState({ observations: null });
     base.fetch(
       'observations/' +
         this.state.season +
@@ -98,8 +99,6 @@ class App extends Component {
       {
         context: this,
         then(data) {
-          console.log(data['times']);
-          console.log(data['times'].length);
           this.setState({
             date: dateValue,
             observations: data['times']
@@ -107,7 +106,6 @@ class App extends Component {
         }
       }
     );
-    console.log(this.state.observations);
   }
 
   updateCountData(addData) {
@@ -153,7 +151,7 @@ class App extends Component {
     return (
       <div className="App">
         <div>
-          <p className="App-intro">
+          <div className="App-intro">
             <Info
               seasons={Object.keys(this.state.seasons)}
               season={this.state.season}
@@ -173,7 +171,7 @@ class App extends Component {
               show={this.state.show}
               showPhoto={this.showPhoto.bind(this)}
             />
-          </p>
+          </div>
         </div>
         <div className="footer">
           <Footer />

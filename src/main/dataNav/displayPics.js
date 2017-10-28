@@ -10,26 +10,21 @@ var dbx = new Dropbox({
 class DisplayPic extends Component {
   constructor() {
     super();
-    this.display = this.display.bind(this);
     this.state = {
       url: null
     };
   }
 
   componentDidMount() {
-    var displayPic = this;
     dbx
       .sharingCreateSharedLink({ path: this.props.observation.path })
       .then(function(response) {
-        displayPic.setState({ url: response.url.replace('?dl=0', '?dl=1') });
-      })
+        this.setState({ url: response.url.replace('?dl=0', '?raw=1') });
+      }.bind(this))
       .catch(function(error) {
         console.log(error);
       });
   }
-  // componentWillUnmount() {
-  //   displayPic.removeBinding(this.ref);
-  // }
 
   display(event) {
     const checked = document.querySelectorAll('input').checked;
@@ -37,20 +32,26 @@ class DisplayPic extends Component {
   }
 
   render() {
-    return (
-      <div className="photo">
-        <div>
-          <img className="renderedPics" src={this.state.url} />
-          <input
-            type="checkbox"
-            value={this.props.index}
-            onChange={this.display}
-            name="show"
-          />
-          <label>Has been counted?</label>
+    if (this.state.url == null) {
+      return (
+        <div>...</div>
+      );
+    } else {
+      return (
+        <div className="photo">
+          <div>
+            <img className="renderedPics" src={this.state.url} />
+            <input
+              type="checkbox"
+              value={this.props.index}
+              onChange={this.display}
+              name="show"
+            />
+            <label>Has been counted?</label>
+          </div>
         </div>
-      </div>
-    );
+      );
+    }
   }
 }
 

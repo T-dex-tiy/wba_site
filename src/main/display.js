@@ -14,8 +14,7 @@ class Display extends Component {
         <div className="right-box">
           <div>
             <h4>
-              {this.props.observations.length}-Observations in{' '}
-              {this.props.trailhead} area
+              {this.props.observations.length} observations
             </h4>
           </div>
           <div className="Pic">

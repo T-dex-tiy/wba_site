@@ -19,8 +19,17 @@ class LocationNav extends Component {
     var trailheads = this.props.trailheads;
     var dates = this.props.dates;
     var selectedSeason = this.props.season;
+    if (selectedSeason == null) {
+      selectedSeason = "";
+    }
     var selectedTrailhead = this.props.trailhead;
+    if (selectedTrailhead == null) {
+      selectedTrailhead = "";
+    }
     var selectedDate = this.props.date;
+    if (selectedDate == null) {
+      selectedDate = "";
+    }
 
     return (
       <div className="locationData">
@@ -71,9 +80,9 @@ class LocationNav extends Component {
         </div>
         <div>
           <Input
-            trailhead={this.props.trailhead}
-            day={this.props.date}
-            updateCountData={this.props.updateCountData}
+            trailhead={this.props.trailhead ? this.props.trailhead : ""}
+            day={this.props.date ? this.props.date : ""}
+            updateCountData={this.props.updateCountData ? this.props.updateCountData : 0}
           />
         </div>
       </div>

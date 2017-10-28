@@ -47,7 +47,7 @@ class Input extends Component {
           <input type="text" ref="vistorCount" id="count1" />
         </div>
         <div>
-          <h4>Counter Info</h4>
+          <h4>Counter Name</h4>
           <input type="text" ref="user" id="count2" />
         </div>
         <div className="btn">
