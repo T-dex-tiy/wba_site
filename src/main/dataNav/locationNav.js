@@ -75,7 +75,8 @@ class LocationNav extends Component {
             season={this.props.season}
             trailhead={this.props.trailhead ? this.props.trailhead : ""}
             date={this.props.date ? this.props.date : ""}
-            updateCountData={this.props.updateCountData ? this.props.updateCountData : 0}
+            dateCountData={this.props.dateCountData ? this.props.dateCountData : {}}
+            updateCountData={this.props.updateCountData ? this.props.updateCountData : {}}
           />
         </div>
       </div>

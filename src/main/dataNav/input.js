@@ -7,32 +7,24 @@ class Input extends Component {
   }
 
   addData(event) {
+    const key = `${this.props.season}-${this.props.trailhead}-${this.props.date}`
     const newCountData = {
       season: this.props.season,
       date: this.props.date,
       trailhead: this.props.trailhead,
-      vistors: this.refs.vistorCount.value,
-      user: this.refs.user.value
+      visitors: this.refs.visitorCount.value ? this.refs.visitorCount.value : this.props.dateCountData[key]['visitors'],
+      user: this.refs.user.value ? this.refs.user.value : this.props.dateCountData[key]['user']
     };
-    if (this.refs.user.value === '') {
-      alert('Please enter Name!');
-    }
-    if (this.refs.vistorCount.value === '') {
-      alert('Please enter number!');
-    }
     event.preventDefault();
 
-    if (this.refs.user.value || this.refs.vistorCount.value != '') {
-      alert('Thanks for counting!');
-      this.props.updateCountData(newCountData);
-    }
-    const updatedData = (document.getElementById('count1').value = '');
-    document.getElementById('count2').value = '';
-    //Don't know if this is needed but added for testing sake
-    console.log(updatedData);
+    this.props.updateCountData(newCountData);
+    console.log(newCountData);
   }
 
   render() {
+    const key = `${this.props.season}-${this.props.trailhead}-${this.props.date}`
+    const data = this.props.dateCountData;
+    console.log(data);
     return (
       <div className="inputData" id="inputDataFields">
         <div>
@@ -48,16 +40,18 @@ class Input extends Component {
           {this.props.date}
         </div>
         <div>
-          <h4>Unique Vistors:</h4>
-          <input type="text" ref="vistorCount" id="count1" />
+          <h4>Unique Visitors:</h4>
+          <div>Current value: {this.props.dateCountData.visitors ? this.props.dateCountData.visitors : 0}</div>
+          <div>New value: <input type="text" ref="visitorCount" /></div>
         </div>
         <div>
           <h4>Counter Name:</h4>
-          <input type="text" ref="user" id="count2" />
+          <div>Current value: {this.props.dateCountData.user ? this.props.dateCountData.user : ''}</div>
+          <div>New value: <input type="text" ref="user" /></div>
         </div>
         <div className="btn">
           <button className="button" onClick={this.addData}>
-            Submit
+            Update
           </button>
         </div>
       </div>

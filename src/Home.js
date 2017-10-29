@@ -30,7 +30,8 @@ class App extends Component {
       season: null,
       trailhead: null,
       date: null,
-      show: ''
+      show: '',
+      dateCountData: {}
     };
   }
 
@@ -59,7 +60,8 @@ class App extends Component {
       trailhead: null,
       dates: [],
       date: null,
-      observations: null
+      observations: null,
+      dateCountData: {}
     });
   }
   handleChangeTrailhead(event) {
@@ -76,7 +78,8 @@ class App extends Component {
             trailhead: trailheadValue,
             dates: data['dates'],
             date: null,
-            observations: null
+            observations: null,
+            dateCountData: {}
           });
         }
       }
@@ -101,7 +104,8 @@ class App extends Component {
         then(data) {
           this.setState({
             date: dateValue,
-            observations: data['times']
+            observations: data['times'],
+            dateCountData: this.state.countData[`${this.state.season}-${this.state.trailhead}-${dateValue}`]
           });
         }
       }
@@ -109,33 +113,12 @@ class App extends Component {
   }
 
   updateCountData(addData) {
-    const newData = { ...this.state.countData };
-    const time = new Date();
-    const minutesRaw = time.getMinutes().toString();
-    const minutes = minutesRaw.length < 2 ? '0' + minutesRaw : minutesRaw;
-    const hour = time.getHours();
-    const months = [
-      'Jan',
-      'Feb',
-      'Mar',
-      'Apr',
-      'May',
-      'Jun',
-      'Jul',
-      'Aug',
-      'Sep',
-      'Oct',
-      'Nov',
-      'Dec'
-    ];
-    const month = months[time.getMonth()];
-    const day = time.getDay();
-    const year = time.getFullYear();
-    const key = `${hour} : ${minutes}, ${month} ${day}, ${year}`;
-    newData.key = key;
-    newData[key] = addData;
-
-    this.setState({ countData: newData });
+    const key = `${addData['season']}-${addData['trailhead']}-${addData['date']}`;
+    base.post(`countData/${key}`, {
+      data: addData
+    }).catch(err => {
+      console.log(err);
+    });
   }
 
   showPhoto(event) {
@@ -162,6 +145,7 @@ class App extends Component {
             handleChangeTrailhead={this.handleChangeTrailhead.bind(this)}
             handleChangeDay={this.handleChangeDay.bind(this)}
             updateCountData={this.updateCountData.bind(this)}
+            dateCountData={this.state.dateCountData}
           />
           <Display
             observations={this.state.observations}
