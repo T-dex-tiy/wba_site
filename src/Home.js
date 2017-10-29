@@ -91,7 +91,7 @@ class App extends Component {
       return;
     }
     var dateValue = event.target.value;
-    this.setState({ observations: null });
+    this.setState({ date: null, observations: null, dateCountData: {} });
     base.fetch(
       'observations/' +
         this.state.season +

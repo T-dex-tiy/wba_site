@@ -3,26 +3,31 @@ import React, { Component } from 'react';
 class Input extends Component {
   constructor() {
     super();
+    this.state = { visitors: null, user: null };
     this.addData = this.addData.bind(this);
   }
 
   addData(event) {
+    const visitors = this.refs.visitorCount.value ? this.refs.visitorCount.value : this.props.dateCountData['visitors'];
+    const user = this.refs.user.value ? this.refs.user.value : this.props.dateCountData['user'];
+    this.setState({
+      visitors: visitors,
+      user: user
+    });
     const newCountData = {
       season: this.props.season,
       date: this.props.date,
       trailhead: this.props.trailhead,
-      visitors: this.refs.visitorCount.value ? this.refs.visitorCount.value : this.props.dateCountData['visitors'],
-      user: this.refs.user.value ? this.refs.user.value : this.props.dateCountData['user']
+      visitors: visitors,
+      user: user
     };
     event.preventDefault();
 
     this.props.updateCountData(newCountData);
-    console.log(newCountData);
   }
 
   render() {
     const data = this.props.dateCountData;
-    console.log(data);
     return (
       <div className="inputData" id="inputDataFields">
         <div>
@@ -39,12 +44,12 @@ class Input extends Component {
         </div>
         <div>
           <h4>Unique Visitors:</h4>
-          <div>Current value: {this.props.dateCountData.visitors ? this.props.dateCountData.visitors : 0}</div>
+          <div>Current value: {this.state.visitors ? this.state.visitors : (this.props.dateCountData.visitors ? this.props.dateCountData.visitors : 0)}</div>
           <div>New value: <input type="text" ref="visitorCount" /></div>
         </div>
         <div>
           <h4>Counter Name:</h4>
-          <div>Current value: {this.props.dateCountData.user ? this.props.dateCountData.user : ''}</div>
+          <div>Current value: {this.state.user ? this.state.user : (this.props.dateCountData.user ? this.props.dateCountData.user : '' )}</div>
           <div>New value: <input type="text" ref="user" /></div>
         </div>
         <div className="btn">
