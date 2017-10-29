@@ -7,13 +7,12 @@ class Input extends Component {
   }
 
   addData(event) {
-    const key = `${this.props.season}-${this.props.trailhead}-${this.props.date}`
     const newCountData = {
       season: this.props.season,
       date: this.props.date,
       trailhead: this.props.trailhead,
-      visitors: this.refs.visitorCount.value ? this.refs.visitorCount.value : this.props.dateCountData[key]['visitors'],
-      user: this.refs.user.value ? this.refs.user.value : this.props.dateCountData[key]['user']
+      visitors: this.refs.visitorCount.value ? this.refs.visitorCount.value : this.props.dateCountData['visitors'],
+      user: this.refs.user.value ? this.refs.user.value : this.props.dateCountData['user']
     };
     event.preventDefault();
 
@@ -22,7 +21,6 @@ class Input extends Component {
   }
 
   render() {
-    const key = `${this.props.season}-${this.props.trailhead}-${this.props.date}`
     const data = this.props.dateCountData;
     console.log(data);
     return (
