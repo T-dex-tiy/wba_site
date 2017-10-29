@@ -8,7 +8,7 @@ export default class Auth {
     redirectUri: process.env.REACT_APP_AUTH_REDIRECT_URI,
     audience: 'https://wba.auth0.com/userinfo',
     responseType: 'token id_token',
-    scope: 'openid'
+    scope: 'openid email'
   });
 
     constructor() {
@@ -39,14 +39,15 @@ export default class Auth {
       localStorage.setItem('access_token', authResult.accessToken);
       localStorage.setItem('id_token', authResult.idToken);
       localStorage.setItem('expires_at', expiresAt);
+      localStorage.setItem('email', authResult.idTokenPayload.email);
       history.replace('/home');
     }
 
     logout() {
-
       localStorage.removeItem('access_token');
       localStorage.removeItem('id_token');
       localStorage.removeItem('expires_at');
+      localStorage.removeItem('email');
       history.replace('/');
     }
 
