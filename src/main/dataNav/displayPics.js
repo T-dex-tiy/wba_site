@@ -26,10 +26,6 @@ class DisplayPic extends Component {
       });
   }
 
-  display(event) {
-    const checked = document.querySelectorAll('input').checked;
-  }
-
   render() {
     if (this.state.url == null) {
       return (
@@ -40,13 +36,6 @@ class DisplayPic extends Component {
         <div className="photo">
           <div>
             <img className="renderedPics" src={this.state.url} />
-            <input
-              type="checkbox"
-              value={this.props.index}
-              onChange={this.display}
-              name="show"
-            />
-            <label>Has been counted?</label>
           </div>
         </div>
       );
