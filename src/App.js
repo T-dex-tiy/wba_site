@@ -32,13 +32,16 @@ class App extends Component {
             </Button>
           )}
           {isAuthenticated() && (
-            <Button
-              bsStyle="primary"
-              className="btn-margin"
-              onClick={this.logout.bind(this)}
-            >
-              Log Out
-            </Button>
+            <span>
+              <Download />
+              <Button
+                bsStyle="primary"
+                className="btn-margin"
+                onClick={this.logout.bind(this)}
+              >
+                Log Out
+              </Button>
+            </span>
           )}
         </Navbar.Header>
       </Navbar>

@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import firebase from 'firebase';
-import Rebase from 're-base';
 import TopNav from './navbar/TopNav.js';
 import Footer from './main/footer.js';
 import Info from './main/Info.js';
@@ -8,15 +6,7 @@ import Display from './main/display.js';
 import { EventEmitter } from 'events';
 import Auth from './Auth.js';
 import './styles/App.css';
-
-const app = firebase.initializeApp({
-  apiKey: 'AIzaSyCQXJ-iCdvSjz7DUzDn8G6xl6LNO58HV8E',
-  authDomain: 'wba-trail-counting.firebaseapp.com',
-  databaseURL: 'https://wba-trail-counting.firebaseio.com',
-  storageBucket: 'wba-trail-counting.appspot.com'
-});
-
-const base = Rebase.createClass(app.database());
+import Database from './Database.js';
 
 class App extends Component {
   constructor(props) {
@@ -33,20 +23,21 @@ class App extends Component {
       show: '',
       dateCountData: {}
     };
+    this.firebase = Database.sharedInstance.firebase;
   }
 
   componentDidMount() {
-    base.syncState(`seasons`, {
+    this.firebase.syncState(`seasons`, {
       context: this,
       state: 'seasons'
     });
-    base.syncState(`countData`, {
+    this.firebase.syncState(`countData`, {
       context: this,
       state: 'countData'
     });
   }
   componentWillUnmount() {
-    base.removeBinding(this.ref);
+    this.firebase.removeBinding(this.ref);
   }
 
   handleChange(event) {
@@ -69,7 +60,7 @@ class App extends Component {
       return;
     }
     var trailheadValue = event.target.value;
-    base.fetch(
+    this.firebase.fetch(
       'season-trailhead-dates/' + this.state.season + '-' + trailheadValue,
       {
         context: this,
@@ -92,7 +83,7 @@ class App extends Component {
     }
     var dateValue = event.target.value;
     this.setState({ date: null, observations: null, dateCountData: {} });
-    base.fetch(
+    this.firebase.fetch(
       'observations/' +
         this.state.season +
         '-' +
@@ -114,7 +105,7 @@ class App extends Component {
 
   updateCountData(addData) {
     const key = `${addData['season']}-${addData['trailhead']}-${addData['date']}`;
-    base.post(`countData/${key}`, {
+    this.firebase.post(`countData/${key}`, {
       data: addData
     }).catch(err => {
       console.log(err);
