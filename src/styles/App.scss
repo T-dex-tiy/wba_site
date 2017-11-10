@@ -32,7 +32,7 @@ body {
     align-items: stretch;
     min-height: 750px;
     height: 100%;
-    width: 50%;
+    width: 45%;
   }
   .right-box {
     border: solid black 1px;
@@ -44,7 +44,7 @@ body {
     max-height: 25vh;
     overflow-y: scroll;
     height: 100%;
-    width: 50%;
+    width: 60%;
 
     .photo {
       display: flex;
@@ -79,7 +79,7 @@ body {
   width: 100%;
   color: white;
   align-content: stretch;
-  a {
+  margin-top: 75% a {
     text-decoration: none;
     color: white;
   }
@@ -91,7 +91,7 @@ body {
 }
 .locationData {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   flex-direction: column;
 }
 

@@ -1,33 +1,21 @@
 body {
-  font-family: 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
-}
-
-.App {
-  display: flex;
-  min-height: 100vh;
-  flex-direction: column;
-}
+  font-family: 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif; }
 
 .App-header {
   display: flex;
   flex-direction: row-reverse;
   justify-content: space-between;
   align-items: center;
-  height: 76px;
+  height: 5.5em;
   background-color: #ffcc00;
-  width: 100%;
-  }
+  width: 100%; }
   .App-header .Directory {
     display: flex;
-    justify-content: flex-end;
-   }
+    justify-content: flex-end; }
 
 .App-intro {
   display: flex;
-  flex-direction: row;
-  flex: 1;
-  max-height: 90vh;
- }
+  flex-direction: row; }
   .App-intro .left-box {
     flex-wrap: wrap;
     border: solid black 1px;
@@ -37,62 +25,56 @@ body {
     justify-content: flex-start;
     align-items: stretch;
     min-height: 750px;
-    max-height: 100vh;
-    width: 50%;
-    flex: 1;
-   }
+    height: 100%;
+    width: 45%; }
   .App-intro .right-box {
     border: solid black 1px;
     padding: 2px;
     margin: 2px;
+    flex-direction: row;
     align-items: stretch;
     min-height: 750px;
-    max-height: 100vh;
+    max-height: 25vh;
     overflow-y: scroll;
-    width: 50%;
-   }
+    height: 100%;
+    width: 60%; }
     .App-intro .right-box .photo {
       display: flex;
       flex-wrap: nowrap;
-      max-width: 100%;
-    }
+      max-width: 100%; }
       .App-intro .right-box .photo .renderedPics {
         display: flex;
         flex: 4;
         flex-wrap: nowrap;
         max-width: 100%;
-        max-height: 33%;
-        border: 1px solid;
-       }
+        height: 100vh;
+        width: 150vh;
+        border: 1px solid red; }
       .App-intro .right-box .photo .gallery {
         display: flex;
         border: 1px solid red;
-        height: 25px;
-      }
+        height: 25px; }
 
 .footer {
   background: #4f553c;
   display: flex;
   flex-direction: row-reverse;
   justify-content: flex-start space-between;
-  height: 76px;
+  height: 155px;
   width: 100%;
   color: white;
   align-content: stretch;
- }
-  .footer a {
-    text-decoration: none;
-    color: white;
-   }
+  margin-top: 75% a;
+    margin-top-text-decoration: none;
+    margin-top-color: white; }
   .footer a:hover {
     text-decoration: underline;
     color: white;
-    font-size: 105%;
-   }
+    font-size: 105%; }
 
 .locationData {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   flex-direction: column; }
 
 .displaydata {
@@ -102,6 +84,12 @@ body {
 .inputData {
   flex-direction: row-reverse;
   justify-content: flex-end; }
+
+.dateTrailhead {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-content: flex-end; }
 
 .btn {
   display: flex;

@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
-import TopNav from './navbar/TopNav.js';
 import Footer from './main/footer.js';
 import Info from './main/Info.js';
 import Display from './main/display.js';
-import { EventEmitter } from 'events';
-import Auth from './Auth.js';
 import './styles/App.css';
 import Database from './Database.js';
 
@@ -96,7 +93,9 @@ class App extends Component {
           this.setState({
             date: dateValue,
             observations: data['times'],
-            dateCountData: this.state.countData[`${this.state.season}-${this.state.trailhead}-${dateValue}`]
+            dateCountData: this.state.countData[
+              `${this.state.season}-${this.state.trailhead}-${dateValue}`
+            ]
           });
         }
       }
@@ -104,12 +103,16 @@ class App extends Component {
   }
 
   updateCountData(addData) {
-    const key = `${addData['season']}-${addData['trailhead']}-${addData['date']}`;
-    this.firebase.post(`countData/${key}`, {
-      data: addData
-    }).catch(err => {
-      console.log(err);
-    });
+    const key = `${addData['season']}-${addData['trailhead']}-${addData[
+      'date'
+    ]}`;
+    this.firebase
+      .post(`countData/${key}`, {
+        data: addData
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
 
   showPhoto(event) {
