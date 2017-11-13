@@ -4,7 +4,6 @@ body {
 .App-header {
   display: flex;
   flex-direction: row-reverse;
-  position: fixed;
   justify-content: space-between;
   align-items: center;
   height: 3.5em;
@@ -19,7 +18,8 @@ body {
 
 .App-intro {
   display: flex;
-  flex-direction: row; }
+  flex-direction: row;
+}
   .App-intro .left-box {
     flex-wrap: wrap;
     border: solid black 1px;
@@ -28,20 +28,22 @@ body {
     flex-direction: row;
     justify-content: flex-start;
     align-items: stretch;
-    min-height: 92vh;
+    min-height: 86vh;
     height: 100%;
-    width: 45%; }
+    width: 45%;
+  }
   .App-intro .right-box {
     border: solid black 1px;
     padding: 2px;
     margin: 2px;
     flex-direction: row;
     align-items: stretch;
-    min-height: 92vh;
+    min-height: 86vh;
     max-height: 25vh;
     overflow-y: scroll;
     height: 100%;
-    width: 60%; }
+    width: 60%;
+  }
     .App-intro .right-box .photo {
       display: flex;
       flex-wrap: nowrap;
@@ -80,7 +82,7 @@ body {
   display: flex;
   justify-content: space-between;
   flex-direction: column;
-  padding-top: 65px; }
+}
 
 .displaydata {
   justify-content: center;
