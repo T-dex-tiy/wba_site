@@ -4,14 +4,18 @@ body {
 .App-header {
   display: flex;
   flex-direction: row-reverse;
+  position: fixed;
   justify-content: space-between;
   align-items: center;
-  height: 5.5em;
+  height: 3.5em;
   background-color: #ffcc00;
   width: 100%; }
   .App-header .Directory {
     display: flex;
     justify-content: flex-end; }
+
+.topbtn {
+  display: flex; }
 
 .App-intro {
   display: flex;
@@ -24,7 +28,7 @@ body {
     flex-direction: row;
     justify-content: flex-start;
     align-items: stretch;
-    min-height: 750px;
+    min-height: 92vh;
     height: 100%;
     width: 45%; }
   .App-intro .right-box {
@@ -33,7 +37,7 @@ body {
     margin: 2px;
     flex-direction: row;
     align-items: stretch;
-    min-height: 750px;
+    min-height: 92vh;
     max-height: 25vh;
     overflow-y: scroll;
     height: 100%;
@@ -60,7 +64,7 @@ body {
   display: flex;
   flex-direction: row-reverse;
   justify-content: flex-start space-between;
-  height: 155px;
+  height: 3.5em;
   width: 100%;
   color: white;
   align-content: stretch;
@@ -74,8 +78,9 @@ body {
 
 .locationData {
   display: flex;
-  justify-content: space-around;
-  flex-direction: column; }
+  justify-content: space-between;
+  flex-direction: column;
+  padding-top: 65px; }
 
 .displaydata {
   justify-content: center;

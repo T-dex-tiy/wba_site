@@ -32,7 +32,7 @@ class App extends Component {
             </Button>
           )}
           {isAuthenticated() && (
-            <span>
+            <span className="topbtn">
               <Download />
               <Button
                 bsStyle="primary"
