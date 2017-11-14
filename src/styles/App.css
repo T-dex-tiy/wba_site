@@ -50,10 +50,7 @@ body {
         display: flex;
         flex: 4;
         flex-wrap: nowrap;
-        max-width: 100%;
-        height: 100vh;
-        width: 150vh;
-        border: 1px solid red; }
+        max-width: 100%; }
       .App-intro .right-box .photo .gallery {
         display: flex;
         border: 1px solid red;

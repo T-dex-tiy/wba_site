@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Navbar, Button } from 'react-bootstrap';
 import Download from './navbar/downloadbutton.js';
+import Footer from './main/footer.js';
 import './styles/App.css';
 
 class App extends Component {
@@ -20,31 +21,36 @@ class App extends Component {
     const { isAuthenticated } = this.props.auth;
 
     return (
-      <Navbar className="App-header">
-        <Navbar.Header className="Directory">
-          {!isAuthenticated() && (
-            <Button
-              bsStyle="primary"
-              className="btn-margin"
-              onClick={this.login.bind(this)}
-            >
-              Log In
-            </Button>
-          )}
-          {isAuthenticated() && (
-            <span className="topbtn">
-              <Download />
+      <div>
+        <Navbar className="App-header">
+          <Navbar.Header className="Directory">
+            {!isAuthenticated() && (
               <Button
                 bsStyle="primary"
                 className="btn-margin"
-                onClick={this.logout.bind(this)}
+                onClick={this.login.bind(this)}
               >
-                Log Out
+                Log In
               </Button>
-            </span>
-          )}
-        </Navbar.Header>
-      </Navbar>
+            )}
+            {isAuthenticated() && (
+              <span className="topbtn">
+                <Download />
+                <Button
+                  bsStyle="primary"
+                  className="btn-margin"
+                  onClick={this.logout.bind(this)}
+                >
+                  Log Out
+                </Button>
+              </span>
+            )}
+          </Navbar.Header>
+        </Navbar>
+        <div>
+          <Footer />
+        </div>
+      </div>
     );
   }
 }
