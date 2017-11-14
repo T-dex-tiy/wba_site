@@ -47,9 +47,6 @@ class App extends Component {
             )}
           </Navbar.Header>
         </Navbar>
-        <div>
-          <Footer />
-        </div>
       </div>
     );
   }
