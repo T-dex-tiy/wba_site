@@ -16,43 +16,53 @@ export default class Database {
   }
 
   export() {
-    this.firebase.fetch('countData',
+    this.firebase.fetch('observations',
       {
         context: this,
-        then(data) {
-          var csv = 'season,trailhead,date,user,count\n';
-          var totals = {};
-          for (var key in data) {
-            var row = data[key];
-            csv += row['season'] + ',' + row['trailhead'] + ',' + row['date'] + ',' + row['user'] + ',' + row['visitors'] + '\n';
-            var season = totals[row['season']];
-            if (season == null) {
-              season = { 'trailheads': {}, 'total': 0 }
+        then(observations) {
+          this.firebase.fetch('countData',
+            {
+              context: this,
+              then(data) {
+                var csv = 'season,trailhead,date,counter,observations,users\n';
+                var totals = {};
+                for (var key in data) {
+                  var row = data[key];
+                  var observationsCount = observations[row['season'] + '-' + row['trailhead'] + '-' + row['date']]['times'].length;
+                  csv += row['season'] + ',' + row['trailhead'] + ',' + row['date'] + ',' + row['user'] + ',' + observationsCount + ',' + row['visitors'] + '\n';
+                  var season = totals[row['season']];
+                  if (season == null) {
+                    season = { 'trailheads': {}, 'totalVisitors': 0, 'totalObservations': 0 }
+                  }
+                  var trailhead = season['trailheads'][row['trailhead']]
+                  if (trailhead == null) {
+                    trailhead = { 'totalVisitors': 0, 'totalObservations': 0 }
+                  }
+                  var count = parseInt(row['visitors']);
+                  season['totalVisitors'] += count;
+                  season['totalObservations'] += observationsCount;
+                  trailhead['totalVisitors'] += count
+                  trailhead['totalObservations'] += observationsCount;
+                  season['trailheads'][row['trailhead']] = trailhead
+                  totals[row['season']] = season
+                }
+                csv += '\n\nTotals,season,trailhead,observations,users\n';
+                for (var s in totals) {
+                  var season = totals[s];
+                  for (var t in season['trailheads']) {
+                    var trailhead = season['trailheads'][t];
+                    csv += 'Total,' + s + ',' + t + ',' + trailhead['totalObservations'] + ',' + trailhead['totalVisitors'] + '\n';
+                  }
+                  csv += 'Total,' + s + ',,' + season['totalObservations'] + ',' + season['totalVisitors'] + '\n';
+                }
+                var blob = new Blob([csv], { type: 'text/csv' });
+                var anchor = document.createElement('a');
+                anchor.href = window.URL.createObjectURL(blob);
+                anchor.setAttribute('download', 'wba-count-data.csv');
+                anchor.click();
+              }
             }
-            var trailhead = season['trailheads'][row['trailhead']]
-            if (trailhead == null) {
-              trailhead = 0
-            }
-            var count = parseInt(row['visitors']);
-            season['total'] += count;
-            trailhead += count
-            season['trailheads'][row['trailhead']] = trailhead
-            totals[row['season']] = season
-          }
-          csv += '\n\n';
-          for (var s in totals) {
-            var season = totals[s];
-            for (var t in season['trailheads']) {
-              var trailhead = season['trailheads'][t];
-              csv += 'Total,' + s + ',' + t + ',' + trailhead + '\n';
-            }
-            csv += 'Total,' + s + ',,' + season['total'] + '\n';
-          }
-          var blob = new Blob([csv], { type: 'text/csv' });
-          var anchor = document.createElement('a');
-          anchor.href = window.URL.createObjectURL(blob);
-          anchor.setAttribute('download', 'wba-count-data.csv');
-          anchor.click();
+          );
         }
       }
     );
