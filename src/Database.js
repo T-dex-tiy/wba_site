@@ -21,9 +21,32 @@ export default class Database {
         context: this,
         then(data) {
           var csv = 'season,trailhead,date,user,count\n';
+          var totals = {};
           for (var key in data) {
             var row = data[key];
             csv += row['season'] + ',' + row['trailhead'] + ',' + row['date'] + ',' + row['user'] + ',' + row['visitors'] + '\n';
+            var season = totals[row['season']];
+            if (season == null) {
+              season = { 'trailheads': {}, 'total': 0 }
+            }
+            var trailhead = season['trailheads'][row['trailhead']]
+            if (trailhead == null) {
+              trailhead = 0
+            }
+            var count = parseInt(row['visitors']);
+            season['total'] += count;
+            trailhead += count
+            season['trailheads'][row['trailhead']] = trailhead
+            totals[row['season']] = season
+          }
+          csv += '\n\n';
+          for (var s in totals) {
+            var season = totals[s];
+            for (var t in season['trailheads']) {
+              var trailhead = season['trailheads'][t];
+              csv += 'Total,' + s + ',' + t + ',' + trailhead + '\n';
+            }
+            csv += 'Total,' + s + ',,' + season['total'] + '\n';
           }
           var blob = new Blob([csv], { type: 'text/csv' });
           var anchor = document.createElement('a');
