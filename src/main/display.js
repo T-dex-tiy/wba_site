@@ -12,10 +12,10 @@ class Display extends Component {
     if (observations != null) {
       return (
         <div className="right-box">
-            <div>
-              <h4>
+            <div className="counter-input">
+              <div>
                 {this.props.observations.length} observations
-              </h4>
+              </div>
             </div>
             <div className="Pic">
               {Object.keys(observations).map(key => {

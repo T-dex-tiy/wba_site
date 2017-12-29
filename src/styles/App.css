@@ -1,24 +1,31 @@
 body {
-  font-family: 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif; }
+  font-family: 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
+  background-color: #ffcc00;
+}
 
 .App-header {
   display: flex;
   flex-direction: row-reverse;
   justify-content: space-between;
   align-items: center;
-  height: 3.5em;
+  height: 4em;
   background-color: #ffcc00;
-  width: 100%; }
-  .App-header .Directory {
-    display: flex;
-    justify-content: flex-end; }
+  width: 100%;
+}
+.App-header .Directory {
+  display: flex;
+  justify-content: flex-end;
+}
 
 .topbtn {
-  display: flex; }
+  display: flex;
+  padding-right: 10px;
+}
 
 .App-intro {
   display: flex;
   flex-direction: row;
+  background-color: white;
 }
   .App-intro .left-box {
     flex-wrap: wrap;
@@ -40,9 +47,28 @@ body {
     align-items: stretch;
     min-height: 86vh;
     max-height: 25vh;
-    overflow-y: scroll;
     height: 100%;
     width: 60%;
+  }
+  .App-intro .right-box .counter-input {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    vertical-align: middle;
+    min-height: 4vh;
+    max-height: 4vh;
+  }
+  .App-intro .right-box .Pic {
+    padding: 0px;
+    margin: 0px;
+    flex-direction: row;
+    align-items: stretch;
+    min-height: 82vh;
+    max-height: 25vh;
+    height: 100%;
+    width: 100%;
+    overflow-y: scroll;
   }
     .App-intro .right-box .photo {
       display: flex;
@@ -59,21 +85,23 @@ body {
         height: 25px; }
 
 .footer {
-  background: #4f553c;
+  background: #ffcc00;
   display: flex;
-  flex-direction: row-reverse;
-  justify-content: flex-start space-between;
-  height: 3em;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  vertical-align: middle;
+  height: 2em;
   width: 100%;
+}
+.footer a {
+  text-decoration: none;
   color: white;
-  align-content: stretch;
-  margin-top: 75% a;
-    margin-top-text-decoration: none;
-    margin-top-color: white; }
-  .footer a:hover {
-    text-decoration: underline;
-    color: white;
-    font-size: 105%; }
+}
+.footer a:hover {
+  text-decoration: underline;
+  color: white;
+}
 
 .locationData {
   display: flex;

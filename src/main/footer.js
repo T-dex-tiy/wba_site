@@ -7,7 +7,7 @@ class Footer extends Component {
   render() {
     return (
       <div className="footer">
-        <a href="http://wasatchbackcountryalliance.org/">Main Page</a>
+        <a href="http://wasatchbackcountryalliance.org/">Wasatch Backcountry Alliance</a>
       </div>
     );
   }
