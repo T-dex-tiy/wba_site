@@ -52,12 +52,36 @@ body {
   }
   .App-intro .right-box .counter-input {
     display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: stretch;
     vertical-align: middle;
     min-height: 4vh;
     max-height: 4vh;
+  }
+  .App-intro .right-box .counter-input .observations {
+    display: flex;
+    justify-content: flex-start;
+    padding-top: 0.5em;
+  }
+  .App-intro .right-box .counter-input .counter-wrapper {
+    display: flex;
+    justify-content: flex-end;
+  }
+  .App-intro .right-box .counter-input .counter {
+    padding-top: 0.5em;
+    padding-right: 0.5em;
+  }
+  .App-intro .right-box .counter-input .counter-buttons {
+  }
+  .counter-button {
+    border-radius: 0px;
+    box-sizing: border-box;
+    border: 1px;
+    min-width: 5vh;
+    max-width: 5vh;
+    min-height: 3vh;
+    max-height: 3vh;
   }
   .App-intro .right-box .Pic {
     padding: 0px;
@@ -73,16 +97,20 @@ body {
     .App-intro .right-box .photo {
       display: flex;
       flex-wrap: nowrap;
-      max-width: 100%; }
+      max-width: 100%;
+      padding-bottom: 4px;
+    }
       .App-intro .right-box .photo .renderedPics {
         display: flex;
         flex: 4;
         flex-wrap: nowrap;
-        max-width: 100%; }
-      .App-intro .right-box .photo .gallery {
+        max-width: 100%;
+      }
+      /*.App-intro .right-box .photo .gallery {
         display: flex;
         border: 1px solid red;
-        height: 25px; }
+        height: 25px;
+      }*/
 
 .footer {
   background: #ffcc00;
@@ -107,34 +135,42 @@ body {
   display: flex;
   justify-content: space-between;
   flex-direction: column;
+  align-items: stretch;
 }
 
 .displaydata {
   justify-content: center;
-  align-content: center; }
+  align-content: center;
+}
 
 .inputData {
   flex-direction: row-reverse;
-  justify-content: flex-end; }
+  justify-content: flex-end;
+}
 
 .dateTrailhead {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
-  align-content: flex-end; }
+  align-content: flex-end;
+}
 
 .btn {
   display: flex;
-  align-items: flex-end; }
+  align-items: flex-end;
+}
 
 .button {
-  align-items: flex-end; }
+  align-items: flex-end;
+}
 
 .gallery {
   height: 10vh;
-  width: 75vh; }
+  width: 75vh;
+}
 
 .display {
-  visibility: hidden; }
+  visibility: hidden;
+}
 
 /*# sourceMappingURL=App.css.map */

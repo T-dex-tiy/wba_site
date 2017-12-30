@@ -2,8 +2,29 @@ import React, { Component } from 'react';
 import DisplayPic from './dataNav/displayPics.js';
 
 class Display extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+    this.state = {
+      number: this.props.number || 0
+    };
+    this.increment = this.increment.bind(this);
+    this.decrement = this.decrement.bind(this);
+    this.zero = this.zero.bind(this);
+  }
+  increment() {
+    this.setState({
+      number: this.state.number + 1
+    });
+  }
+  decrement() {
+    this.setState({
+      number: Math.max(0, this.state.number - 1)
+    });
+  }
+  zero() {
+    this.setState({
+      number: 0
+    });
   }
   render() {
     const observations = this.props.observations;
@@ -13,9 +34,19 @@ class Display extends Component {
       return (
         <div className="right-box">
             <div className="counter-input">
-              <div>
-                {this.props.observations.length} observations
-              </div>
+              <span className="observations">
+                Observations: {observations.length}
+              </span>
+              <span className="counter-wrapper">
+                <span className="counter">
+                  Counter: {this.state.number}
+                </span>
+                <span className="counter-buttons">
+                  <button className="counter-button" onClick={this.decrement}>-</button>
+                  <button className="counter-button" onClick={this.increment}>+</button>
+                  <button className="counter-button" onClick={this.zero}>Reset</button>
+                </span>
+              </span>
             </div>
             <div className="Pic">
               {Object.keys(observations).map(key => {

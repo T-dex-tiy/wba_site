@@ -25,6 +25,7 @@ class App extends Component {
         <Navbar className="App-header">
           <Navbar.Header className="Directory">
             {!isAuthenticated() && (
+              <span className="topbtn">
               <Button
                 bsStyle="primary"
                 className="btn-margin"
@@ -32,6 +33,7 @@ class App extends Component {
               >
                 Log In
               </Button>
+              </span>
             )}
             {isAuthenticated() && (
               <span className="topbtn">
