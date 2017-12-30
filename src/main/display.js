@@ -5,7 +5,7 @@ class Display extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      number: this.props.number || 0
+      counterValue: props.counterValue || 0
     };
     this.increment = this.increment.bind(this);
     this.decrement = this.decrement.bind(this);
@@ -13,23 +13,29 @@ class Display extends Component {
   }
   increment() {
     this.setState({
-      number: this.state.number + 1
+      counterValue: this.state.counterValue + 1
     });
   }
   decrement() {
     this.setState({
-      number: Math.max(0, this.state.number - 1)
+      counterValue: Math.max(0, this.state.counterValue - 1)
     });
   }
   zero() {
     this.setState({
-      number: 0
+      counterValue: 0
+    });
+  }
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      counterValue: parseInt(nextProps.counterValue)
     });
   }
   render() {
     const observations = this.props.observations;
     const url = this.props.url;
     const show = this.props.show;
+    const counterValue = this.state.counterValue;
     if (observations != null) {
       return (
         <div className="right-box">
@@ -39,7 +45,7 @@ class Display extends Component {
               </span>
               <span className="counter-wrapper">
                 <span className="counter">
-                  Counter: {this.state.number}
+                  Counter: {counterValue}
                 </span>
                 <span className="counter-buttons">
                   <button className="counter-button" onClick={this.decrement}>-</button>
