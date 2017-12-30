@@ -3,6 +3,7 @@ import { Navbar, Button } from 'react-bootstrap';
 import Download from './navbar/downloadbutton.js';
 import Footer from './main/footer.js';
 import './styles/App.css';
+import Notifications, {notify} from 'react-notify-toast';
 
 class App extends Component {
   goTo(route) {
@@ -22,9 +23,11 @@ class App extends Component {
 
     return (
       <div>
+        <Notifications />
         <Navbar className="App-header">
           <Navbar.Header className="Directory">
             {!isAuthenticated() && (
+              <span className="topbtn">
               <Button
                 bsStyle="primary"
                 className="btn-margin"
@@ -32,6 +35,7 @@ class App extends Component {
               >
                 Log In
               </Button>
+              </span>
             )}
             {isAuthenticated() && (
               <span className="topbtn">

@@ -147,6 +147,7 @@ class App extends Component {
             url={this.state.url}
             show={this.state.show}
             showPhoto={this.showPhoto.bind(this)}
+            counterValue={(this.state.dateCountData != null && this.state.dateCountData.visitors != null) ? this.state.dateCountData.visitors : 0}
           />
         </div>
         <Footer />

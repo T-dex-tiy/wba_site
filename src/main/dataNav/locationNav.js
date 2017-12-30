@@ -52,7 +52,7 @@ class LocationNav extends Component {
             value={selectedTrailhead}
             onChange={this.props.handleChangeTrailhead}
           >
-            [<Dropdown key="empty" index="Select a Trailhead" />].concat({ trailheads.map(key => {
+            [<Dropdown key="empty" index="Select a Trailhead" />].concat({ trailheads.sort().map(key => {
                 return <Dropdown key={key} index={key} />;
               })
             })
