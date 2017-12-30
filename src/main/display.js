@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import DisplayPic from './dataNav/displayPics.js';
+import Notifications, {notify} from 'react-notify-toast';
 
 class Display extends Component {
   constructor(props) {
@@ -12,19 +13,24 @@ class Display extends Component {
     this.zero = this.zero.bind(this);
   }
   increment() {
+    let counterValue = this.state.counterValue + 1;
     this.setState({
-      counterValue: this.state.counterValue + 1
+      counterValue: counterValue
     });
+    notify.show(counterValue, 'success', 500);
   }
   decrement() {
+    let counterValue = Math.max(0, this.state.counterValue - 1);
     this.setState({
-      counterValue: Math.max(0, this.state.counterValue - 1)
+      counterValue: counterValue
     });
+    notify.show(counterValue, 'success', 500);
   }
   zero() {
     this.setState({
       counterValue: 0
     });
+    notify.show('Reset!', 'warning', 1000);
   }
   componentWillReceiveProps(nextProps) {
     this.setState({

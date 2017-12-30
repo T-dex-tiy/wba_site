@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Notifications, {notify} from 'react-notify-toast';
 
 class Input extends Component {
   constructor() {
@@ -27,6 +28,7 @@ class Input extends Component {
     event.preventDefault();
 
     this.props.updateCountData(newCountData);
+    notify.show('Updated!', 'success', 1000);
   }
 
   render() {
