@@ -1,5 +1,7 @@
 import firebase from 'firebase';
 import Rebase from 're-base';
+import Notifications, {notify} from 'react-notify-toast';
+import React, { Component } from 'react';
 
 export default class Database {
   static sharedInstance = this.sharedInstance == null ? new Database() : this.sharedInstance
@@ -16,6 +18,7 @@ export default class Database {
   }
 
   export() {
+    notify.show('Exporting data...', 'success', -1);
     this.firebase.fetch('observations',
       {
         context: this,
@@ -28,7 +31,8 @@ export default class Database {
                 var totals = {};
                 for (var key in data) {
                   var row = data[key];
-                  var observationsCount = observations[row['season'] + '-' + row['trailhead'] + '-' + row['date']]['times'].length;
+                  var observationKey = [row['season'], row['trailhead'], row['date']].join('-');
+                  var observationsCount = observations[observationKey]['times'].length;
                   csv += row['season'] + ',' + row['trailhead'] + ',' + row['date'] + ',' + row['user'] + ',' + observationsCount + ',' + row['visitors'] + '\n';
                   var season = totals[row['season']];
                   if (season == null) {
@@ -55,11 +59,29 @@ export default class Database {
                   }
                   csv += 'Total,' + s + ',,' + season['totalObservations'] + ',' + season['totalVisitors'] + '\n';
                 }
+                var uncountedDates = [];
+                for (var key in observations) {
+                  var row = observations[key];
+                  var countKey = [row['season'], row['trailhead'], row['date']].join('-');
+                  var countData = data[countKey];
+                  console.log(JSON.stringify(countData));
+                  if (countData !== undefined) {
+                    continue;
+                  }
+                  uncountedDates.push([row['season'], row['trailhead'], row['date']].join(','));
+                }
+                csv += '\n\nUncounted dates\n';
+                csv += uncountedDates.join('\n');
                 var blob = new Blob([csv], { type: 'text/csv' });
                 var anchor = document.createElement('a');
                 anchor.href = window.URL.createObjectURL(blob);
                 anchor.setAttribute('download', 'wba-count-data.csv');
                 anchor.click();
+                if (document.getElementsByClassName('toast-notification').length > 0) {
+                  var notifyNode = document.getElementsByClassName('toast-notification')[0];
+                  notifyNode.style.visibility = "hidden";
+                  console.log(notifyNode);
+                }
               }
             }
           );
