@@ -32,7 +32,14 @@ export default class Database {
                 for (var key in data) {
                   var row = data[key];
                   var observationKey = [row['season'], row['trailhead'], row['date']].join('-');
-                  var observationsCount = observations[observationKey]['times'].length;
+                  var observationsCount = 0;
+                  var observationsForKey = observations[observationKey];
+                  if (observationsForKey !== undefined) {
+                    var times = observationsForKey['times'];
+                    if (times !== undefined) {
+                      observationsCount = times.length;
+                    }
+                  }
                   csv += row['season'] + ',' + row['trailhead'] + ',' + row['date'] + ',' + row['user'] + ',' + observationsCount + ',' + row['visitors'] + '\n';
                   var season = totals[row['season']];
                   if (season == null) {
